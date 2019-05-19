@@ -6,11 +6,31 @@ interface BookingEntryViewState {
 
 export interface BookingEntryViewProps {
     location: string
+
+    /**
+     * Called if an add action was performed
+     * @param location where to add an entry
+     */
+    onAdd?(location: string): void
+
+    /**
+     * Called if a remove action has been performed
+     * @param location where to add an entry
+     */
+    onRemove?(location: string): void
+
+    /**
+     * Called if an update action has been performed
+     * @param location of the updated entryl
+     */
+    onUpdate?(location: string): void
 }
 
 export default class BookingEntryView extends React.Component<BookingEntryViewProps, BookingEntryViewState> {
     constructor(props: BookingEntryViewProps) {
         super(props);
+        this.onAdd = this.onAdd.bind(this);
+        this.onRemove = this.onRemove.bind(this);
     }
 
     render(): React.ReactNode {
@@ -31,7 +51,8 @@ export default class BookingEntryView extends React.Component<BookingEntryViewPr
                     <textarea rows={1} name="notes" className="col notes" placeholder="personal notes"/>
 
                     <div className="col btn-group actions">
-                        <button type="button" className="btn btn-primary" title="add">
+                        <button type="button" className="btn btn-primary" title="add"
+                                onClick={this.onAdd}>
                             <i className="fas fa-plus"/>
                         </button>
                         <button type="button" className="btn btn-primary" title="synced">
@@ -44,12 +65,27 @@ export default class BookingEntryView extends React.Component<BookingEntryViewPr
                         <button type="button" className="btn btn-primary" title="sync">
                             <i className="fas fa-sync-alt"/>
                         </button>
-                        <button type="button" className="btn btn-danger" title="remove">
+                        <button type="button" className="btn btn-danger" title="remove" onClick={this.onRemove}>
                             <i className="fas fa-trash-alt"/>
                         </button>
                     </div>
                 </div>
             </div>
         );
+    }
+
+    private onAdd() {
+        if (this.props.onAdd)
+            this.props.onAdd(this.props.location);
+    }
+
+    private onRemove() {
+        if (this.props.onRemove)
+            this.props.onRemove(this.props.location);
+    }
+
+    private onUpdate() {
+        if (this.props.onUpdate)
+            this.props.onUpdate(this.props.location);
     }
 }

@@ -7,9 +7,7 @@
     "bootstrap": "^4.3.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-router-dom": "^5.0.0",
-    "react-scripts": "^3.0.1",
-    "typescript": "^3.4.5"
+    "react-router-dom": "^5.0.0"
   },
   "devDependencies": {
     "@bahmutov/add-typescript-to-cypress": "^2.1.0",
@@ -19,6 +17,9 @@
     "@types/react-dom": "^16.8.4",
     "@types/react-router-dom": "^4.3.3",
     "cypress": "^3.3.0",
+    "react-scripts": "^3.0.1",
+    "start-server-and-test": "^1.9.0",
+    "typescript": "^3.4.5",
     "webpack": "^4.31.0"
   },
   "scripts": {
@@ -28,7 +29,8 @@
     "eject": "react-scripts eject",
     "verify": "react-scripts test --watchAll=false && cypress run",
     "cypress": "cypress run",
-    "cypressUi": "cypress open"
+    "cypressUi": "cypress open",
+    "verifyCI": "react-scripts test --watchAll=false && start-server-and-test start http://localhost:3000 cypress"
   },
   "eslintConfig": {
     "extends": "react-app"

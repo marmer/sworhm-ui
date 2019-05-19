@@ -23,21 +23,31 @@ export default class BookingViewTable extends Component<BookingViewTableProps, B
 
     render(): React.ReactElement {
         return <div>
-            <EntryList bookingEntries={this.state.bookingEntries}/>
+            {this.entries()}
         </div>;
     }
 
+    private entries() {
+        return this.state.bookingEntries.map(entryId =>
+            <BookingEntryView key={entryId}
+                              location={entryId}
+                              onAdd={this.addNewRow}
+                              onRemove={this.removeEntry}
+                              onUpdate={this.updateEntry}/>);
+    }
+
+    private addNewRow(location: string) {
+        alert("Add: " + location)
+    }
+
+
+    private updateEntry(location: string) {
+        alert("Update: " + location)
+    }
+
+    private removeEntry(location: string) {
+        alert("Remove: " + location)
+    }
 }
 
-interface EntryListProps {
-    bookingEntries: string[]
 
-}
-
-function EntryList(bookingEntries: EntryListProps) {
-    let entries = bookingEntries.bookingEntries.map(entryId => <BookingEntryView key={String(entryId)}
-                                                                                 location={entryId}/>);
-    return <>
-        {entries}
-    </>;
-}

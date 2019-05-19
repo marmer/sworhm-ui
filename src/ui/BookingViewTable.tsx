@@ -23,6 +23,7 @@ export default class BookingViewTable extends Component<BookingViewTableProps, B
 
     render(): React.ReactElement {
         return <div>
+            <h1>Sworhm UI</h1>
             {this.entries()}
         </div>;
     }

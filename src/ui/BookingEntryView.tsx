@@ -1,4 +1,5 @@
 import React from 'react';
+import './BookingEntryView.css'
 
 interface BookingEntryViewState {
 }
@@ -14,46 +15,41 @@ export default class BookingEntryView extends React.Component<BookingEntryViewPr
 
     render(): React.ReactNode {
         return (
-            <>
-                <h6>Entry of {this.props.location}</h6>
-                <tr>
-                    <td>
-                        <input type="text" name="start" placeholder="e.g. '09:25'"/>
-                    </td>
-                    <td>
-                        <input type="textarea" name="duration" placeholder='e.g. 01:15, 1h15'/>
-                    </td>
-                    <td>
-                        <textarea rows={1} placeholder="What has been done"/>
-                    </td>
-                    <td>
-                        <input type="textarea" placeholder="TICKET-123"/>
-                    </td>
-                    <td>
-                        <textarea rows={1} placeholder="personal notes"/>
-                    </td>
-                    <td>
-                        <div className="btn-group">
-                            <button type="button" className="btn btn-primary" title="add">
-                                <i className="fas fa-plus"/>
-                            </button>
-                            <button type="button" className="btn btn-primary" title="synced">
-                                <i className="fas fa-lock"/>
-                            </button>
+            <div className="container">
+                <div className="row no-gutters">
+                    <input type="text" name="start" className="col start" placeholder="e.g. '09:25'"/>
 
-                            <button type="button" className="btn btn-primary" title="synced">
-                                <i className="fas fa-lock-open"/>
-                            </button>
-                            <button type="button" className="btn btn-primary" title="sync">
-                                <i className="fas fa-sync-alt"/>
-                            </button>
-                            <button type="button" className="btn btn-danger" title="remove">
-                                <i className="fas fa-trash-alt"/>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-            </>
+                    <input type="text" name="duration" className="col duration"
+                           placeholder='e.g. 01:15, 1h15'/>
+
+                    <textarea rows={1} name="description" className="col description"
+                              placeholder="What has been done"/>
+
+                    <input type="textarea" name="ticket" className="col ticket" placeholder="TICKET-123"/>
+
+
+                    <textarea rows={1} name="notes" className="col notes" placeholder="personal notes"/>
+
+                    <div className="col btn-group actions">
+                        <button type="button" className="btn btn-primary" title="add">
+                            <i className="fas fa-plus"/>
+                        </button>
+                        <button type="button" className="btn btn-primary" title="synced">
+                            <i className="fas fa-lock"/>
+                        </button>
+
+                        <button type="button" className="btn btn-primary" title="synced">
+                            <i className="fas fa-lock-open"/>
+                        </button>
+                        <button type="button" className="btn btn-primary" title="sync">
+                            <i className="fas fa-sync-alt"/>
+                        </button>
+                        <button type="button" className="btn btn-danger" title="remove">
+                            <i className="fas fa-trash-alt"/>
+                        </button>
+                    </div>
+                </div>
+            </div>
         );
     }
 }

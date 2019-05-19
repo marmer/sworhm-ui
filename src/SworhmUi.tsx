@@ -5,7 +5,7 @@ import BookingViewTable from "./ui/BookingViewTable";
 class SworhmUi extends Component {
     render() {
         return (
-            <div className="App">
+            <div className="SwormUi">
                 <BookingViewTable/>
             </div>
         );

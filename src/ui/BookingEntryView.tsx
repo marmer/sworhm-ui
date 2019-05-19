@@ -35,7 +35,7 @@ export default class BookingEntryView extends React.Component<BookingEntryViewPr
 
     render(): React.ReactNode {
         return (
-            <div className="container">
+            <div className="container BookingEntryView">
                 <div className="row no-gutters">
                     <input type="text" name="start" className="col start" placeholder="e.g. '09:25'"/>
 

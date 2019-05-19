@@ -19,6 +19,10 @@ export default class BookingViewTable extends Component<BookingViewTableProps, B
                 "http://some.server/booking/42/entry/21", "http://some.server/booking/42/entry/42",
             ]
         }
+
+        this.addNewRow = this.addNewRow.bind(this);
+        this.updateEntry = this.updateEntry.bind(this);
+        this.removeEntry = this.removeEntry.bind(this);
     }
 
     render(): React.ReactElement {
@@ -38,7 +42,9 @@ export default class BookingViewTable extends Component<BookingViewTableProps, B
     }
 
     private addNewRow(location: string) {
-        alert("Add: " + location)
+        this.setState({
+            bookingEntries: [...this.state.bookingEntries, "http://some.server/booking/42/entry/" + Math.round(Math.random()*5000)]
+        });
     }
 
 

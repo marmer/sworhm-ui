@@ -1,0 +1,40 @@
+{
+  "_links": {
+    "self": {
+      "href": "http://backend.de/api/bookings/2002-20-02/entries"
+    },
+    "last": {
+      "href": "http://backend.de/api/bookings/2002-20-01/entries"
+    },
+    "next": {
+      "href": "http://backend.de/api/bookings/2002-20-03/entries"
+    }
+  },
+  "day": "2002-20-02",
+  "_embedded:": [
+    {
+      "_links": {
+        "self": {
+          "href": "http://backend.de/api/bookings/2002-20-02/entries/1"
+        }
+      },
+      "startTime": "00:55",
+      "duration": "01:13:00",
+      "description": "another one bites the dust",
+      "ticket": "JIRA-666",
+      "notes": "knocking on heavens door"
+    },
+    {
+      "_links": {
+        "self": {
+          "href": "http://backend.de/api/bookings/2002-20-02/entries/2"
+        }
+      },
+      "startTime": "1:55",
+      "duration": "01:13:00",
+      "description": "stay alive",
+      "ticket": "JIRA-999",
+      "notes": "cheek to cheek"
+    }
+  ]
+}

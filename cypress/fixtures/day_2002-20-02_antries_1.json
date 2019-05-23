@@ -1,0 +1,12 @@
+{
+  "_links": {
+    "self": {
+      "href": "http://backend.de/api/bookings/2002-20-02/entries/1"
+    }
+  },
+  "startTime": "00:55",
+  "duration": "01:13:00",
+  "description": "another one bites the dust",
+  "ticket": "JIRA-666",
+  "notes": "knocking on heavens door"
+}

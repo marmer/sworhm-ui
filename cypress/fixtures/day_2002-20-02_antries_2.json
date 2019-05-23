@@ -1,0 +1,12 @@
+{
+  "_links": {
+    "self": {
+      "href": "http://backend.de/api/bookings/2002-20-02/entries/2"
+    }
+  },
+  "startTime": "1:55",
+  "duration": "01:13:00",
+  "description": "stay alive",
+  "ticket": "JIRA-999",
+  "notes": "cheek to cheek"
+}

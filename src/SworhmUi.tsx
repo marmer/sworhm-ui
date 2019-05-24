@@ -6,7 +6,7 @@ class SworhmUi extends Component {
     render() {
         return (
             <div className="SwormUi">
-                <BookingViewTable/>
+                <BookingViewTable resourceReference="http://backend.de/api/bookings/2002-02-01/entries"/>
             </div>
         );
     }

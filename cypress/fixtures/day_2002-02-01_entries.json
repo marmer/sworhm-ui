@@ -10,7 +10,7 @@
       "href": "http://backend.de/api/bookings/2002-02-02/entries"
     }
   },
-  "day": "2002-20-02",
+  "day": "2002-02-01",
   "_embedded:": [
     {
       "_links": {

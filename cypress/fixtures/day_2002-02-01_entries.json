@@ -11,7 +11,7 @@
     }
   },
   "day": "2002-02-01",
-  "_embedded:": [
+  "_embedded": [
     {
       "_links": {
         "self": {

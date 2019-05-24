@@ -26,7 +26,7 @@ describe('Some Acceptance test', () => {
     it('should load with entries from the backend', function () {
     cy.server({"force404": true});
 
-      cy.route("http://backend.de/api/bookings/2002-02-01/entries", "fixture:day_2002-02-01_entries.json");
+      cy.route("GET", "http://backend.de/api/bookings/2002-02-01/entries", "fixture:day_2002-02-01_entries.json");
 
       cy.visit('http://localhost:3000');
       cy.get('.BookingEntryView').eq(0)

@@ -2,12 +2,19 @@ import React, {Component} from 'react';
 import BookingEntryView from "./BookingEntryView";
 
 interface BookingTableViewState {
-    bookingEntries: string[]
+    bookingEntries: {
+        id:string,
+        startTime?: string,
+        duration?: string,
+        description?: string,
+        ticket?: string,
+        notes?: string
+    }[];
 
 }
 
 export interface BookingViewTableProps {
-
+    resourceReference: string;
 }
 
 export default class BookingViewTable extends Component<BookingViewTableProps, BookingTableViewState> {
@@ -15,14 +22,8 @@ export default class BookingViewTable extends Component<BookingViewTableProps, B
     constructor(props: Readonly<BookingViewTableProps>) {
         super(props);
         this.state = {
-            bookingEntries: [
-                "http://some.server/booking/42/entry/21", "http://some.server/booking/42/entry/42",
-            ]
+            bookingEntries: [{id:"bla1"},{id:"bla2"}]
         }
-
-        this.addNewRow = this.addNewRow.bind(this);
-        this.updateEntry = this.updateEntry.bind(this);
-        this.removeEntry = this.removeEntry.bind(this);
     }
 
     render(): React.ReactElement {
@@ -33,27 +34,25 @@ export default class BookingViewTable extends Component<BookingViewTableProps, B
     }
 
     private entries() {
-        return this.state.bookingEntries.map(entryId =>
-            <BookingEntryView key={entryId}
-                              location={entryId}
+        return this.state.bookingEntries.map(entry =>
+            <BookingEntryView key={entry.id}
                               onAdd={this.addNewRow}
                               onRemove={this.removeEntry}
-                              onUpdate={this.updateEntry}/>);
+                              onUpdate={this.updateEntry} entry={entry}/>);
     }
 
-    private addNewRow(location: string) {
+    private addNewRow = (id: string) => {
         this.setState({
-            bookingEntries: [...this.state.bookingEntries, "http://some.server/booking/42/entry/" + Math.round(Math.random()*5000)]
+            bookingEntries: [...this.state.bookingEntries, {id:id}]
         });
     }
 
-
-    private updateEntry(location: string) {
-        alert("Update: " + location)
+    private updateEntry = (id: string) => {
+        alert("Update: " + id)
     }
 
-    private removeEntry(location: string) {
-        alert("Remove: " + location)
+    private removeEntry =(id: string) => {
+        alert("Remove: " + id)
     }
 }
 

@@ -23,8 +23,7 @@ describe('Some Acceptance test', () => {
         .should('eq', 3);
   });
 
-  describe(' with a started server', () => {
-    it('should load with entries of database', function () {
+    it('should load with entries from the backend', function () {
     cy.server({"force404": true});
 
       cy.route("http://backend.de/api/bookings/2002-02-01/entries", "fixture:day_2002-02-01_entries.json");
@@ -44,5 +43,4 @@ describe('Some Acceptance test', () => {
           .find('.ticket').should('have.value', 'JIRA-999')
           .find('.notes').should('have.value', 'cheek to cheek');
     });
-  });
 });

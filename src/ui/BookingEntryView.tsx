@@ -5,7 +5,14 @@ interface BookingEntryViewState {
 }
 
 export interface BookingEntryViewProps {
-    location: string
+    entry: {
+        id: string,
+        startTime?: string,
+        duration?: string,
+        description?: string,
+        ticket?: string,
+        notes?: string
+    }
 
     /**
      * Called if an add action was performed
@@ -27,11 +34,6 @@ export interface BookingEntryViewProps {
 }
 
 export default class BookingEntryView extends React.Component<BookingEntryViewProps, BookingEntryViewState> {
-    constructor(props: BookingEntryViewProps) {
-        super(props);
-        this.onAdd = this.onAdd.bind(this);
-        this.onRemove = this.onRemove.bind(this);
-    }
 
     render(): React.ReactNode {
         return (
@@ -74,18 +76,18 @@ export default class BookingEntryView extends React.Component<BookingEntryViewPr
         );
     }
 
-    private onAdd() {
+    private onAdd = () => {
         if (this.props.onAdd)
-            this.props.onAdd(this.props.location);
+            this.props.onAdd(this.props.entry.id);
     }
 
-    private onRemove() {
+    private onRemove = () => {
         if (this.props.onRemove)
-            this.props.onRemove(this.props.location);
+            this.props.onRemove(this.props.entry.id);
     }
 
-    private onUpdate() {
+    private onUpdate = () => {
         if (this.props.onUpdate)
-            this.props.onUpdate(this.props.location);
+            this.props.onUpdate(this.props.entry.id);
     }
 }

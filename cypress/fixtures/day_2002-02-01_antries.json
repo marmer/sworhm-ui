@@ -1,13 +1,13 @@
 {
   "_links": {
     "self": {
-      "href": "http://backend.de/api/bookings/2002-20-02/entries"
+      "href": "http://backend.de/api/bookings/2002-02-01/entries"
     },
     "last": {
-      "href": "http://backend.de/api/bookings/2002-20-01/entries"
+      "href": "http://backend.de/api/bookings/2002-01-31/entries"
     },
     "next": {
-      "href": "http://backend.de/api/bookings/2002-20-03/entries"
+      "href": "http://backend.de/api/bookings/2002-02-02/entries"
     }
   },
   "day": "2002-20-02",
@@ -15,7 +15,7 @@
     {
       "_links": {
         "self": {
-          "href": "http://backend.de/api/bookings/2002-20-02/entries/1"
+          "href": "http://backend.de/api/bookings/2002-02-01/entries/1"
         }
       },
       "startTime": "00:55",
@@ -27,7 +27,7 @@
     {
       "_links": {
         "self": {
-          "href": "http://backend.de/api/bookings/2002-20-02/entries/2"
+          "href": "http://backend.de/api/bookings/2002-02-01/entries/2"
         }
       },
       "startTime": "1:55",

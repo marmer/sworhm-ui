@@ -51,18 +51,14 @@ export default class BookingTableView extends Component<BookingTableViewProps, B
         // TODO: marmer 24.05.2019 Extract this spike to seperate "service"
         const xhr = new XMLHttpRequest();
 
-        const DONE = 4;
-        const OK = 200;
-
         this.state = {
-            bookingEntries: [{id: "something", description:"should not be visible"}, {id: "else", description:"bla"}]
+            bookingEntries: [
+                {id:""}
+            ]
         }
 
-
-        // xhr.addEventListener("load", listener);
-        xhr.open("GET", "http://backend.de/api/bookings/2002-02-01/entries");
-        xhr.onreadystatechange = () => {
-            if (xhr.readyState === DONE && xhr.status === OK) {
+        xhr.addEventListener("load", (event) => {
+            if (xhr.status === 200) {
                 let fancyResponse = JSON.parse(xhr.responseText) as FancyResponse;
                 const embedded = fancyResponse._embedded;
 
@@ -74,7 +70,8 @@ export default class BookingTableView extends Component<BookingTableViewProps, B
                     bookingEntries: bookingEntries
                 })
             }
-        };
+        });
+        xhr.open("GET", "http://backend.de/api/bookings/2002-02-01/entries");
         xhr.send();
     }
 

@@ -1,6 +1,6 @@
 import BookingEntryDto from "./BookingEntryDto";
 
-export default interface BookingDayResponseDto {
+export default interface BookingDayDto {
     _links: {
         self: {
             href: string

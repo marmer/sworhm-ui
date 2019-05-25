@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import BookingEntryView from "./BookingEntryView";
 import * as uuid from 'uuidv4';
 import BookingEntry from "../core/model/BookingEntry";
-import BookingDayResponseDto from "../backend/model/BookingDayResponseDto";
+import BookingDayDto from "../backend/model/BookingDayDto";
 
 interface BookingTableViewState {
     bookingEntries: BookingEntry[];
@@ -30,7 +30,7 @@ export default class BookingTableView extends Component<BookingTableViewProps, B
         const xhr = new XMLHttpRequest();
         xhr.addEventListener("load", () => {
             if (xhr.status === 200) {
-                const responseDto = JSON.parse(xhr.responseText) as BookingDayResponseDto;
+                const responseDto = JSON.parse(xhr.responseText) as BookingDayDto;
                 const embedded = responseDto._embedded;
 
                 let bookingEntries = embedded.map((source) => {

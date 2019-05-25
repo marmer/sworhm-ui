@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import BookingEntryView from "./BookingEntryView";
+import * as uuid from 'uuidv4';
 
 interface FancyResponse {
     _links: {
@@ -51,9 +52,12 @@ export default class BookingTableView extends Component<BookingTableViewProps, B
         // TODO: marmer 24.05.2019 Extract this spike to seperate "service"
         const xhr = new XMLHttpRequest();
 
+
+
         this.state = {
             bookingEntries: [
-                {id:""}
+                {id:uuid(),
+                description:uuid()}
             ]
         }
 

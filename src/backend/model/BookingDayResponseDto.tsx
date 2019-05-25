@@ -1,3 +1,5 @@
+import BookingEntryDto from "./BookingEntryDto";
+
 export default interface BookingDayResponseDto {
     _links: {
         self: {
@@ -11,16 +13,5 @@ export default interface BookingDayResponseDto {
         }
     },
     day: string,
-    _embedded: {
-        _links: {
-            self: {
-                href: string
-            }
-        },
-        startTime: string,
-        duration: string,
-        description: string,
-        ticket: string,
-        notes: string
-    }[]
+    _embedded: BookingEntryDto[]
 }

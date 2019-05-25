@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import BookingEntryView from "./BookingEntryView";
-import * as uuid from 'uuidv4';
 import BookingEntry from "../core/model/BookingEntry";
 import BookingDayDto from "../sworhm-data/model/BookingDayDto";
 
@@ -13,16 +12,13 @@ export interface BookingTableViewProps {
 }
 
 export default class BookingTableView extends Component<BookingTableViewProps, BookingTableViewState> {
-
     constructor(props: Readonly<BookingTableViewProps>) {
         super(props);
 
-        // TODO: marmer 24.05.2019 Extract this spike to seperate "service"
         this.state = {
             bookingEntries: [
                 {
-                    id: uuid(),
-                    description: uuid()
+                    id: "blabla"
                 }
             ]
         };

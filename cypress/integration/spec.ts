@@ -24,11 +24,13 @@ describe('Some Acceptance test', () => {
   });
 
     it('should load with entries from the backend', function () {
-    cy.server({"force404": true});
+    cy.server({ force404: true });
 
-      cy.route("GET", "http://backend.de/api/bookings/2002-02-01/entries", "fixture:day_2002-02-01_entries.json");
+      cy.route("GET", "http://backend.de/api/bookings/2002-02-01/entries", "fixture:day_2002-02-01_entries.json")
+          .as("entriesLoad");
 
       cy.visit('http://localhost:3000');
+      cy.wait("@entriesLoad");
       cy.get('.BookingEntryView').eq(0)
           .find('.start').should('have.value', '00:55')
       cy.get('.BookingEntryView').eq(0)

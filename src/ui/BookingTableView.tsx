@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import BookingEntryView from "./BookingEntryView";
 import * as uuid from 'uuidv4';
 import BookingEntry from "../core/model/BookingEntry";
-import BookingDayDto from "../backend/model/BookingDayDto";
+import BookingDayDto from "../sworhm-data/model/BookingDayDto";
 
 interface BookingTableViewState {
     bookingEntries: BookingEntry[];

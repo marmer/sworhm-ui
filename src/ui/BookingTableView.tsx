@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import BookingEntryView from "./BookingEntryView";
 import * as uuid from 'uuidv4';
-import BookingEntry from "../model/BookingEntry";
+import BookingEntry from "../core/model/BookingEntry";
 
 interface FancyResponse {
     _links: {

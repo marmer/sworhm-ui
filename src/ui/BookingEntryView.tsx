@@ -1,6 +1,6 @@
 import React from 'react';
 import './BookingEntryView.css'
-import BookingEntry from "../model/BookingEntry";
+import BookingEntry from "../core/model/BookingEntry";
 
 interface BookingEntryViewState {
 }

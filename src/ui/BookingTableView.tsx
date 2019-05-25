@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import BookingEntryView from "./BookingEntryView";
 import * as uuid from 'uuidv4';
+import BookingEntry from "../model/BookingEntry";
 
 interface FancyResponse {
     _links: {
@@ -30,14 +31,7 @@ interface FancyResponse {
 }
 
 interface BookingTableViewState {
-    bookingEntries: {
-        id: string,
-        startTime?: string,
-        duration?: string,
-        description?: string,
-        ticket?: string,
-        notes?: string
-    }[];
+    bookingEntries: BookingEntry[];
 }
 
 export interface BookingTableViewProps {

@@ -1,19 +1,12 @@
 import React from 'react';
 import './BookingEntryView.css'
+import BookingEntry from "../model/BookingEntry";
 
 interface BookingEntryViewState {
 }
 
 export interface BookingEntryViewProps {
-    entry: {
-        id: string,
-        startTime?: string,
-        duration?: string,
-        description?: string,
-        ticket?: string,
-        notes?: string
-    }
-
+    entry: BookingEntry
     /**
      * Called if an add action was performed
      * @param location where to add an entry

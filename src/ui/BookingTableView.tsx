@@ -47,15 +47,16 @@ export default class BookingTableView extends Component<BookingTableViewProps, B
         const xhr = new XMLHttpRequest();
 
 
-
         this.state = {
             bookingEntries: [
-                {id:uuid(),
-                description:uuid()}
+                {
+                    id: uuid(),
+                    description: uuid()
+                }
             ]
-        }
+        };
 
-        xhr.addEventListener("load", (event) => {
+        xhr.addEventListener("load", () => {
             if (xhr.status === 200) {
                 let fancyResponse = JSON.parse(xhr.responseText) as FancyResponse;
                 const embedded = fancyResponse._embedded;
@@ -92,11 +93,11 @@ export default class BookingTableView extends Component<BookingTableViewProps, B
         this.setState({
             bookingEntries: [...this.state.bookingEntries, {id: id}]
         });
-    }
+    };
 
     private updateEntry = (id: string) => {
         alert("Update: " + id)
-    }
+    };
 
     private removeEntry = (id: string) => {
         alert("Remove: " + id)

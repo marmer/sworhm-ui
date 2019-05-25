@@ -2,33 +2,7 @@ import React, {Component} from 'react';
 import BookingEntryView from "./BookingEntryView";
 import * as uuid from 'uuidv4';
 import BookingEntry from "../core/model/BookingEntry";
-
-interface FancyResponse {
-    _links: {
-        self: {
-            href: string
-        },
-        last: {
-            href: string
-        },
-        next: {
-            href: string
-        }
-    },
-    day: string,
-    _embedded: {
-        _links: {
-            self: {
-                href: string
-            }
-        },
-        startTime: string,
-        duration: string,
-        description: string,
-        ticket: string,
-        notes: string
-    }[]
-}
+import BookingDayResponseDto from "../backend/model/BookingDayResponseDto";
 
 interface BookingTableViewState {
     bookingEntries: BookingEntry[];
@@ -44,9 +18,6 @@ export default class BookingTableView extends Component<BookingTableViewProps, B
         super(props);
 
         // TODO: marmer 24.05.2019 Extract this spike to seperate "service"
-        const xhr = new XMLHttpRequest();
-
-
         this.state = {
             bookingEntries: [
                 {
@@ -56,10 +27,11 @@ export default class BookingTableView extends Component<BookingTableViewProps, B
             ]
         };
 
+        const xhr = new XMLHttpRequest();
         xhr.addEventListener("load", () => {
             if (xhr.status === 200) {
-                let fancyResponse = JSON.parse(xhr.responseText) as FancyResponse;
-                const embedded = fancyResponse._embedded;
+                const responseDto = JSON.parse(xhr.responseText) as BookingDayResponseDto;
+                const embedded = responseDto._embedded;
 
                 let bookingEntries = embedded.map((source) => {
                     return {id: source._links.self.href, ...source};

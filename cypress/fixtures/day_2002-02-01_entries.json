@@ -15,9 +15,10 @@
     {
       "_links": {
         "self": {
-          "href": "http://backend.de/api/bookings/2002-02-01/entries/1"
+          "href": "http://backend.de/api/bookings/2002-02-01/entries/65b8818f-0320-450b-9da0-49f3269bafd7"
         }
       },
+      "id": "65b8818f-0320-450b-9da0-49f3269bafd7",
       "startTime": "00:55",
       "duration": "01:13:00",
       "description": "another one bites the dust",
@@ -27,9 +28,10 @@
     {
       "_links": {
         "self": {
-          "href": "http://backend.de/api/bookings/2002-02-01/entries/2"
+          "href": "http://backend.de/api/bookings/2002-02-01/entries/65b8818f-0320-450b-9da0-49f3269bafd7"
         }
       },
+      "id": "1412c9ec-4abe-44d2-a8af-406c45a55b54",
       "startTime": "01:55",
       "duration": "08:15:00",
       "description": "stay alive",

@@ -2,6 +2,12 @@
   "name": "sworhm-ui",
   "version": "0.1.0",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/marmer/sworhm-ui.git"
+  },
+  "description": "reference ui for sworhm. A project to log and analyze working hours",
+  "license": "GPL-3.0",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.8.2",
     "bootstrap": "^4.3.1",

@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import BookingEntryView from "./BookingEntryView";
 import BookingEntry from "../core/model/BookingEntry";
-import BookingDayDto from "../sworhm-data/model/BookingDayDto";
+import RestBookingProviderService from "../rest/RestBookingProviderService";
+import BookingProviderService from "../core/service/BookingProviderService";
 
 interface BookingTableViewState {
     bookingEntries: BookingEntry[];
@@ -9,37 +10,26 @@ interface BookingTableViewState {
 
 export interface BookingTableViewProps {
     resourceReference: string;
+    bookingDay: string;
 }
 
 export default class BookingTableView extends Component<BookingTableViewProps, BookingTableViewState> {
+    // TODO: marmer 26.05.2019 instance should come from somewhere else
+    private bookingProviderService: BookingProviderService = new RestBookingProviderService();
+
     constructor(props: Readonly<BookingTableViewProps>) {
         super(props);
 
         this.state = {
             bookingEntries: [
                 {
+                    // TODO: marmer 26.05.2019 what about a clean init? ;)
                     id: "blabla"
                 }
             ]
         };
 
-        const xhr = new XMLHttpRequest();
-        xhr.addEventListener("load", () => {
-            if (xhr.status === 200) {
-                const responseDto = JSON.parse(xhr.responseText) as BookingDayDto;
-                const embedded = responseDto._embedded;
-
-                let bookingEntries = embedded.map((source) => {
-                    return {id: source._links.self.href, ...source};
-                });
-
-                this.setState({
-                    bookingEntries: bookingEntries
-                })
-            }
-        });
-        xhr.open("GET", "http://backend.de/api/booking-days/2002-02-01/entries");
-        xhr.send();
+        this.loadBookings();
     }
 
     render(): React.ReactElement {
@@ -47,6 +37,14 @@ export default class BookingTableView extends Component<BookingTableViewProps, B
             <h1>Sworhm UI</h1>
             {this.entries()}
         </div>;
+    }
+
+    private loadBookings() {
+        this.bookingProviderService.getBookingEntriesByDate(this.props.bookingDay)
+            .then(value =>
+                this.setState({
+                    bookingEntries: value
+                }));
     }
 
     private entries() {

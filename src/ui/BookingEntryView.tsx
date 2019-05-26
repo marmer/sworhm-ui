@@ -32,34 +32,35 @@ export default class BookingEntryView extends React.Component<BookingEntryViewPr
         return (
             <div className="container BookingEntryView">
                 <div className="row no-gutters">
-                    <input type="text" name="start" className="col start" placeholder="e.g. '09:25'" value={this.props.entry.startTime}/>
+                    <input type="text" name="start" className="col-1 start" placeholder="e.g. '09:25'"
+                           value={this.props.entry.startTime}/>
 
-                    <input type="text" name="duration" className="col duration"
+                    <input type="text" name="duration" className="col-1 duration"
                            placeholder='e.g. 01:15, 1h15' value={this.props.entry.duration}/>
 
                     <textarea rows={1} name="description" className="col description"
                               placeholder="What has been done" value={this.props.entry.description}/>
 
-                    <input type="textarea" name="ticket" className="col ticket" placeholder="TICKET-123" value={this.props.entry.ticket}/>
-
+                    <input type="textarea" name="ticket" className="col-2 ticket" placeholder="TICKET-123"
+                           value={this.props.entry.ticket}/>
 
                     <textarea rows={1} name="notes" className="col notes" placeholder="personal notes" value={this.props.entry.notes}/>
 
-                    <div className="col btn-group actions">
+                    <div className="col-1 btn-group actions">
                         <button type="button" className="btn btn-primary" title="add"
                                 onClick={this.onAdd}>
                             <i className="fas fa-plus"/>
                         </button>
-                        <button type="button" className="btn btn-primary" title="synced">
-                            <i className="fas fa-lock"/>
-                        </button>
-
+                        {/*<button type="button" className="btn btn-primary" title="synced">*/}
+                        {/*    <i className="fas fa-lock"/>*/}
+                        {/*</button>*/}
+                        {/**/}
                         <button type="button" className="btn btn-primary" title="synced">
                             <i className="fas fa-lock-open"/>
                         </button>
-                        <button type="button" className="btn btn-primary" title="sync">
-                            <i className="fas fa-sync-alt"/>
-                        </button>
+                        {/*<button type="button" className="btn btn-primary" title="sync">*/}
+                        {/*    <i className="fas fa-sync-alt"/>*/}
+                        {/*</button>*/}
                         <button type="button" className="btn btn-danger" title="remove" onClick={this.onRemove}>
                             <i className="fas fa-trash-alt"/>
                         </button>

@@ -1,7 +1,7 @@
 {
   "_links": {
     "self": {
-      "href": "http://backend.de/api/booking-days/2002-20-02/entries/1"
+      "href": "http://backend.de/api/booking-days/2002-20-02/entries/65b8818f-0320-450b-9da0-49f3269bafd7"
     }
   },
   "id": "65b8818f-0320-450b-9da0-49f3269bafd7",

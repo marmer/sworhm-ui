@@ -38,7 +38,7 @@ export default class BookingTableView extends Component<BookingTableViewProps, B
                 })
             }
         });
-        xhr.open("GET", "http://backend.de/api/bookings/2002-02-01/entries");
+        xhr.open("GET", "http://backend.de/api/booking-days/2002-02-01/entries");
         xhr.send();
     }
 

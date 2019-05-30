@@ -1,6 +1,6 @@
 import BookingEntry from "../model/BookingEntry";
 
-export default interface BookingProviderService {
+export default interface BookingEntryService {
     getBookingEntries(): Promise<BookingEntry[]>;
 }
 

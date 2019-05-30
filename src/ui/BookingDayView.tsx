@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import BookingTableView from "./BookingTableView";
-import RestBookingEntryProviderService from "../rest/RestBookingEntryProviderService";
+import RestBookingEntryService from "../rest/RestBookingEntryService";
 
 interface BookingDayViewState {
 
@@ -19,7 +19,7 @@ export default class BookingDayView extends Component<BookingDayViewProps, Booki
     render(): React.ReactElement {
         return <div>
             <BookingTableView
-                bookingProviderService={new RestBookingEntryProviderService("http://backend.de/api/booking-days/2002-02-01")}
+                bookingProviderService={new RestBookingEntryService("http://backend.de/api/booking-days/2002-02-01")}
                 resourceReference="http://backend.de/api/booking-days/2002-02-01"
                 bookingDay="2002-02-01"/>
         </div>;

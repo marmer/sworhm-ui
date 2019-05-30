@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
 import BookingEntryView from "./BookingEntryView";
 import BookingEntry from "../core/model/BookingEntry";
-import BookingProviderService from "../core/service/BookingProviderService";
+import BookingEntryService from "../core/service/BookingEntryService";
 
 interface BookingTableViewState {
     bookingEntries: BookingEntry[];
 }
 
 export interface BookingTableViewProps {
-    bookingProviderService: BookingProviderService,
+    bookingProviderService: BookingEntryService,
 }
 
 export default class BookingTableView extends Component<BookingTableViewProps, BookingTableViewState> {

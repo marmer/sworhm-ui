@@ -1,13 +1,12 @@
 import React, {Component} from 'react';
 import './SworhmUi.css';
-import BookingTableView from "./ui/BookingTableView";
+import BookingDayView from "./ui/BookingDayView";
 
 class SworhmUi extends Component {
     render() {
         return (
             <div className="SwormUi">
-                <BookingTableView resourceReference="http://backend.de/api/booking-days/2002-02-01"
-                                  bookingDay="2002-02-01"/>
+                <BookingDayView/>
             </div>
         );
     }

@@ -2,6 +2,7 @@ import BookingEntry from "../core/model/BookingEntry";
 import BookingEntryProviderService from "../core/service/BookingEntryService";
 import BookingDayDto from "../sworhm-data/model/BookingDayDto";
 import RestEndpoint from "./RestEndpoint";
+import uuidv4 from "uuidv4";
 
 export default class RestBookingEntryService implements BookingEntryProviderService {
     private resource: string;
@@ -23,6 +24,10 @@ export default class RestBookingEntryService implements BookingEntryProviderServ
             }
 
         });
+    }
+
+    newBookingEntry(): BookingEntry {
+        return new BookingEntry(uuidv4());
     }
 
     private convertToEntries(responseDto: BookingDayDto): BookingEntry[] {

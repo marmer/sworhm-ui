@@ -1,14 +1,20 @@
 import BookingEntry from "../core/model/BookingEntry";
-import BookingProviderService from "../core/service/BookingProviderService";
+import BookingEntryProviderService from "../core/service/BookingProviderService";
 import BookingDayDto from "../sworhm-data/model/BookingDayDto";
 import RestEndpoint from "./RestEndpoint";
 
-export default class RestBookingProviderService implements BookingProviderService {
-    getBookingEntriesByDate(day: string): Promise<BookingEntry[]> {
+export default class RestBookingEntryProviderService implements BookingEntryProviderService {
+    private resource: string;
+
+    constructor(resource: string) {
+        this.resource = resource;
+    }
+
+    getBookingEntries(): Promise<BookingEntry[]> {
         return new Promise<BookingEntry[]>((resolve, reject) => {
 
             try {
-                new RestEndpoint<BookingDayDto>("http://backend.de/api/booking-days/" + day)
+                new RestEndpoint<BookingDayDto>(this.resource)
                     .performGet()
                     .then(bookingDay => resolve(this.convertToEntries(bookingDay)))
                     .catch(reject);

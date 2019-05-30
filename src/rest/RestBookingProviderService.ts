@@ -8,7 +8,7 @@ export default class RestBookingProviderService implements BookingProviderServic
         return new Promise<BookingEntry[]>((resolve, reject) => {
 
             try {
-                new RestEndpoint<BookingDayDto>("http://backend.de/api/booking-days/" + day + "/entries")
+                new RestEndpoint<BookingDayDto>("http://backend.de/api/booking-days/" + day)
                     .performGet()
                     .then(bookingDay => resolve(this.convertToEntries(bookingDay)))
                     .catch(reject);

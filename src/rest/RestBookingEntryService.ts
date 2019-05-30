@@ -13,7 +13,6 @@ export default class RestBookingEntryService implements BookingEntryProviderServ
 
     getBookingEntries(): Promise<BookingEntry[]> {
         return new Promise<BookingEntry[]>((resolve, reject) => {
-
             try {
                 new RestEndpoint<BookingDayDto>(this.resource)
                     .performGet()

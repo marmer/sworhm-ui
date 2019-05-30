@@ -1,4 +1,5 @@
 export default class RestEndpoint<T> {
+
     private url: string;
 
     constructor(url: string) {
@@ -13,7 +14,7 @@ export default class RestEndpoint<T> {
         return new Promise<T>((resolve, reject) => {
             const xhr = new XMLHttpRequest();
             xhr.addEventListener("load", () => {
-                if (xhr.status === 200) {
+                if (xhr.status === HttpStatus.OK) {
                     try {
                         resolve(JSON.parse(xhr.responseText));
                     } catch (e) {
@@ -28,4 +29,8 @@ export default class RestEndpoint<T> {
             xhr.send(body ? JSON.stringify(body) : null);
         });
     }
+}
+
+enum HttpStatus {
+    OK = 200,
 }

@@ -11,32 +11,34 @@
     }
   },
   "day": "2002-02-01",
-  "_embedded": [
-    {
-      "_links": {
-        "self": {
-          "href": "http://backend.de/api/booking-days/2002-02-01/entries/65b8818f-0320-450b-9da0-49f3269bafd7"
-        }
+  "_embedded": {
+    "entries": [
+      {
+        "_links": {
+          "self": {
+            "href": "http://backend.de/api/booking-days/2002-02-01/entries/65b8818f-0320-450b-9da0-49f3269bafd7"
+          }
+        },
+        "id": "65b8818f-0320-450b-9da0-49f3269bafd7",
+        "startTime": "00:55",
+        "duration": "01:13:00",
+        "description": "another one bites the dust",
+        "ticket": "JIRA-666",
+        "notes": "knocking on heavens door"
       },
-      "id": "65b8818f-0320-450b-9da0-49f3269bafd7",
-      "startTime": "00:55",
-      "duration": "01:13:00",
-      "description": "another one bites the dust",
-      "ticket": "JIRA-666",
-      "notes": "knocking on heavens door"
-    },
-    {
-      "_links": {
-        "self": {
-          "href": "http://backend.de/api/booking-days/2002-02-01/entries/65b8818f-0320-450b-9da0-49f3269bafd7"
-        }
-      },
-      "id": "1412c9ec-4abe-44d2-a8af-406c45a55b54",
-      "startTime": "01:55",
-      "duration": "08:15:00",
-      "description": "stay alive",
-      "ticket": "JIRA-999",
-      "notes": "cheek to cheek"
-    }
-  ]
+      {
+        "_links": {
+          "self": {
+            "href": "http://backend.de/api/booking-days/2002-02-01/entries/65b8818f-0320-450b-9da0-49f3269bafd7"
+          }
+        },
+        "id": "1412c9ec-4abe-44d2-a8af-406c45a55b54",
+        "startTime": "01:55",
+        "duration": "08:15:00",
+        "description": "stay alive",
+        "ticket": "JIRA-999",
+        "notes": "cheek to cheek"
+      }
+    ]
+  }
 }

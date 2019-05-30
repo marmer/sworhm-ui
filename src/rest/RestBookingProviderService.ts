@@ -22,6 +22,7 @@ export default class RestBookingProviderService implements BookingProviderServic
     private convertToEntries(responseDto: BookingDayDto): BookingEntry[] {
         return responseDto
             ._embedded
+            .entries
             .map((source) => {
                 return {id: source._links.self.href, ...source};
             });

@@ -13,5 +13,7 @@ export default interface BookingDayDto {
         }
     },
     day: string,
-    _embedded: BookingEntryDto[]
+    _embedded: {
+        entries: BookingEntryDto[]
+    }
 }

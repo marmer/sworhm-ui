@@ -32,11 +32,11 @@ export default class BookingEntryView extends React.Component<BookingEntryViewPr
         return (
             <div className="container BookingEntryView">
                 <div className="row no-gutters">
-                    <input type="text" name="start" className="col-1 start" placeholder="e.g. '09:25'"
+                    <input type="text" name="start" className="col-1 start" placeholder="09:25"
                            value={this.props.entry.startTime}/>
 
                     <input type="text" name="duration" className="col-1 duration"
-                           placeholder='e.g. 01:15, 1h15' value={this.props.entry.duration}/>
+                           placeholder='2:17' value={this.props.entry.duration}/>
 
                     <textarea rows={1} name="description" className="col description"
                               placeholder="What has been done" value={this.props.entry.description}/>
@@ -73,12 +73,12 @@ export default class BookingEntryView extends React.Component<BookingEntryViewPr
     private onAdd = () => {
         if (this.props.onAdd)
             this.props.onAdd(this.props.entry.id);
-    }
+    };
 
     private onRemove = () => {
         if (this.props.onRemove)
             this.props.onRemove(this.props.entry.id);
-    }
+    };
 
     private onUpdate = () => {
         if (this.props.onUpdate)

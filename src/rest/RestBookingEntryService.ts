@@ -1,9 +1,9 @@
 import BookingEntry from "../core/model/BookingEntry";
-import BookingEntryProviderService from "../core/service/BookingProviderService";
+import BookingEntryProviderService from "../core/service/BookingEntryService";
 import BookingDayDto from "../sworhm-data/model/BookingDayDto";
 import RestEndpoint from "./RestEndpoint";
 
-export default class RestBookingEntryProviderService implements BookingEntryProviderService {
+export default class RestBookingEntryService implements BookingEntryProviderService {
     private resource: string;
 
     constructor(resource: string) {

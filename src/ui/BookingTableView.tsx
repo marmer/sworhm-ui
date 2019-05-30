@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import BookingEntryView from "./BookingEntryView";
 import BookingEntry from "../core/model/BookingEntry";
-import RestBookingProviderService from "../rest/RestBookingProviderService";
 import BookingProviderService from "../core/service/BookingProviderService";
 
 interface BookingTableViewState {
@@ -9,13 +8,10 @@ interface BookingTableViewState {
 }
 
 export interface BookingTableViewProps {
-    resourceReference: string;
-    bookingDay: string;
+    bookingProviderService: BookingProviderService,
 }
 
 export default class BookingTableView extends Component<BookingTableViewProps, BookingTableViewState> {
-    // TODO: marmer 26.05.2019 instance should come from somewhere else
-    private bookingProviderService: BookingProviderService = new RestBookingProviderService();
 
     constructor(props: Readonly<BookingTableViewProps>) {
         super(props);
@@ -40,7 +36,7 @@ export default class BookingTableView extends Component<BookingTableViewProps, B
     }
 
     private loadBookings() {
-        this.bookingProviderService.getBookingEntriesByDate(this.props.bookingDay)
+        this.props.bookingProviderService.getBookingEntries()
             .then(value =>
                 this.setState({
                     bookingEntries: value
@@ -52,7 +48,8 @@ export default class BookingTableView extends Component<BookingTableViewProps, B
             <BookingEntryView key={entry.id}
                               onAdd={this.addNewRow}
                               onRemove={this.removeEntry}
-                              onUpdate={this.updateEntry} entry={entry}/>);
+                              onUpdate={this.updateEntry}
+                              entry={entry}/>);
     }
 
     private addNewRow = (id: string) => {

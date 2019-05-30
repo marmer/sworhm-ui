@@ -18,11 +18,7 @@ export default class BookingTableView extends Component<BookingTableViewProps, B
 
         this.state = {
             bookingEntries: [
-                {
-                    // TODO: marmer 26.05.2019 what about a clean init? ;)
-                    id: "blabla"
-                }
-            ]
+                props.bookingProviderService.newBookingEntry()]
         };
 
         this.loadBookings();

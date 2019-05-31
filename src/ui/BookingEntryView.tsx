@@ -9,21 +9,21 @@ export interface BookingEntryViewProps {
     entry: BookingEntry
     /**
      * Called if an add action was performed
-     * @param location where to add an entry
+     * @param bookingEntry where to add an entry
      */
-    onAdd?(location: string): void
+    onAdd?(bookingEntry: BookingEntry): void
 
     /**
      * Called if a remove action has been performed
-     * @param location where to add an entry
+     * @param bookingEntry where to add an entry
      */
-    onRemove?(location: string): void
+    onRemove?(bookingEntry: BookingEntry): void
 
     /**
      * Called if an update action has been performed
-     * @param location of the updated entryl
+     * @param bookingEntry of the updated entryl
      */
-    onUpdate?(location: string): void
+    onUpdate?(bookingEntry: BookingEntry): void
 }
 
 export default class BookingEntryView extends React.Component<BookingEntryViewProps, BookingEntryViewState> {
@@ -39,12 +39,13 @@ export default class BookingEntryView extends React.Component<BookingEntryViewPr
                            placeholder='2:17' value={this.props.entry.duration}/>
 
                     <textarea rows={1} name="description" className="col description"
-                              placeholder="What has been done" value={this.props.entry.description}/>
+                              placeholder="what has been done" value={this.props.entry.description}/>
 
                     <input type="textarea" name="ticket" className="col-2 ticket" placeholder="TICKET-123"
                            value={this.props.entry.ticket}/>
 
-                    <textarea rows={1} name="notes" className="col notes" placeholder="personal notes" value={this.props.entry.notes}/>
+                    <textarea rows={1} name="notes" className="col notes" placeholder="personal notes"
+                              value={this.props.entry.notes}/>
 
                     <div className="col-1 btn-group actions">
                         <button type="button" className="btn btn-primary" title="add"
@@ -72,16 +73,16 @@ export default class BookingEntryView extends React.Component<BookingEntryViewPr
 
     private onAdd = () => {
         if (this.props.onAdd)
-            this.props.onAdd(this.props.entry.id);
+            this.props.onAdd(this.props.entry);
     };
 
     private onRemove = () => {
         if (this.props.onRemove)
-            this.props.onRemove(this.props.entry.id);
+            this.props.onRemove(this.props.entry);
     };
 
     private onUpdate = () => {
         if (this.props.onUpdate)
-            this.props.onUpdate(this.props.entry.id);
+            this.props.onUpdate(this.props.entry);
     }
 }

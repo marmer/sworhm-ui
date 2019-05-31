@@ -1,3 +1,7 @@
+enum HttpStatus {
+    OK = 200,
+}
+
 export default class RestEndpoint<T> {
 
     private url: string;
@@ -29,8 +33,4 @@ export default class RestEndpoint<T> {
             xhr.send(body ? JSON.stringify(body) : null);
         });
     }
-}
-
-enum HttpStatus {
-    OK = 200,
 }

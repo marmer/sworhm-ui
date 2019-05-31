@@ -1,5 +1,6 @@
-enum HttpStatus {
+export enum HttpStatus {
     OK = 200,
+    NO_CONTENT = 204,
 }
 
 export default class RestEndpoint<T> {
@@ -10,15 +11,19 @@ export default class RestEndpoint<T> {
         this.url = url;
     }
 
-    public performGet<B>(): Promise<T> {
-        return this.perform("GET");
+    public performGet<B>(expectedStatus = HttpStatus): Promise<T> {
+        return this.perform("GET", expectedStatus.OK);
     }
 
-    private perform<B>(method: string, body?: B): Promise<T> {
+    public performDelete(expectedStatus = HttpStatus.NO_CONTENT): Promise<T> {
+        return this.perform("DELETE", expectedStatus)
+    }
+
+    private perform<B>(method: string, expectedStatus: HttpStatus, body?: B): Promise<T> {
         return new Promise<T>((resolve, reject) => {
             const xhr = new XMLHttpRequest();
             xhr.addEventListener("load", () => {
-                if (xhr.status === HttpStatus.OK) {
+                if (xhr.status === expectedStatus) {
                     try {
                         resolve(JSON.parse(xhr.responseText));
                     } catch (e) {

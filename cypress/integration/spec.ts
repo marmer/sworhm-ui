@@ -55,4 +55,39 @@ describe('Some Acceptance test', () => {
         cy.getAllByPlaceholderText('personal notes').eq(1)
             .should('have.value', 'cheek to cheek');
     });
+
+    it('it should be possible to delete entries', function () {
+        cy.server({force404: true});
+
+        cy.route("GET", "http://backend.de/api/booking-days/2002-02-01", "fixture:day_2002-02-01_entries.json")
+            .as("entriesLoad");
+        cy.route({
+            status: 204,
+            response: "",
+            method: "DELETE",
+            url: "http://backend.de/api/booking-days/2002-02-01/entries/*"
+        }).as("entryDelete");
+
+        cy.visit('http://localhost:3000').debug({
+            log: true
+        });
+        cy.wait("@entriesLoad");
+        cy.getAllByPlaceholderText('TICKET-123').eq(0)
+            .should('have.value', 'JIRA-666');
+
+        cy.getAllByPlaceholderText('TICKET-123').eq(1)
+            .should('have.value', 'JIRA-999');
+
+        cy
+            .getAllByTitle('remove').first()
+            .click();
+
+        cy.wait("@entryDelete");
+
+        cy.getAllByPlaceholderText('TICKET-123')
+            .should('have.length', 1)
+            .eq(0)
+            .should('have.value', 'JIRA-999');
+    });
+
 });

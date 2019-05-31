@@ -46,15 +46,19 @@ export default class BookingTableView extends Component<BookingTableViewProps, B
     private entries() {
         return this.state.bookingEntries.map(entry =>
             <BookingEntryView key={entry.id}
-                              onAdd={this.addNewRow}
+                              onAdd={this.addNewRowAfter}
                               onRemove={this.removeEntry}
                               onUpdate={this.updateEntry}
                               entry={entry}/>);
     }
 
-    private addNewRow = (bookingEntry: BookingEntry) => {
+    private addNewRowAfter = (bookingEntry: BookingEntry) => {
+        const entries = [...this.state.bookingEntries];
+        const index = entries.indexOf(bookingEntry);
+        entries.splice(index + 1, 0, this.newBookingEntry());
+
         this.setState({
-            bookingEntries: [...this.state.bookingEntries, this.newBookingEntry()]
+            bookingEntries: entries
         });
     };
 

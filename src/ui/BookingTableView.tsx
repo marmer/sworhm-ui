@@ -62,8 +62,15 @@ export default class BookingTableView extends Component<BookingTableViewProps, B
         alert("Update: " + bookingEntry)
     };
 
-    private removeEntry = (bookingEntry: BookingEntry) => {
-        alert("Remove: " + bookingEntry)
+    private removeEntry = (entryToDelete: BookingEntry) => {
+        this.props.bookingProviderService.delete(entryToDelete)
+            .then((deletedEntry) => {
+                const bookingEntries = [...this.state.bookingEntries];
+                bookingEntries.splice(bookingEntries.indexOf(deletedEntry), 1);
+                this.setState({bookingEntries: bookingEntries});
+            })
+
+
     }
 }
 

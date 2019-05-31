@@ -21,12 +21,25 @@ export default class RestBookingEntryService implements BookingEntryProviderServ
             } catch (e) {
                 reject();
             }
-
         });
     }
 
     newBookingEntry(): BookingEntry {
         return new BookingEntry(uuidv4());
+    }
+
+    delete(bookingEntry: BookingEntry): Promise<BookingEntry> {
+        return new Promise<BookingEntry>(((resolve, reject) => {
+            try {
+                // TODO: marmer 31.05.2019 Maybe it's better to have this url as part of the entity
+                new RestEndpoint(this.resource + "/entries/" + bookingEntry.id)
+                    .performDelete()
+                    .then(() => resolve(bookingEntry))
+                    .catch(reject);
+            } catch (e) {
+                reject();
+            }
+        }));
     }
 
     private convertToEntries(responseDto: BookingDayDto): BookingEntry[] {

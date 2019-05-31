@@ -18,7 +18,7 @@ export default class BookingTableView extends Component<BookingTableViewProps, B
 
         this.state = {
             bookingEntries: [
-                props.bookingProviderService.newBookingEntry()]
+                this.newBookingEntry()]
         };
 
         this.loadBookings();
@@ -29,6 +29,10 @@ export default class BookingTableView extends Component<BookingTableViewProps, B
             <h1>Sworhm UI</h1>
             {this.entries()}
         </div>;
+    }
+
+    private newBookingEntry() {
+        return this.props.bookingProviderService.newBookingEntry();
     }
 
     private loadBookings() {
@@ -48,18 +52,18 @@ export default class BookingTableView extends Component<BookingTableViewProps, B
                               entry={entry}/>);
     }
 
-    private addNewRow = (id: string) => {
+    private addNewRow = (bookingEntry: BookingEntry) => {
         this.setState({
-            bookingEntries: [...this.state.bookingEntries, {id: id}]
+            bookingEntries: [...this.state.bookingEntries, this.newBookingEntry()]
         });
     };
 
-    private updateEntry = (id: string) => {
-        alert("Update: " + id)
+    private updateEntry = (bookingEntry: BookingEntry) => {
+        alert("Update: " + bookingEntry)
     };
 
-    private removeEntry = (id: string) => {
-        alert("Remove: " + id)
+    private removeEntry = (bookingEntry: BookingEntry) => {
+        alert("Remove: " + bookingEntry)
     }
 }
 

@@ -25,9 +25,10 @@ export default class RestEndpoint<T> {
             xhr.addEventListener("load", () => {
                 if (xhr.status === expectedStatus) {
                     try {
-                        resolve(JSON.parse(xhr.responseText));
+                        const json = JSON.parse(xhr.responseText);
+                        resolve(json)
                     } catch (e) {
-                        reject();
+                        resolve();
                     }
                 } else {
                     reject();

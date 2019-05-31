@@ -56,7 +56,7 @@ describe('Some Acceptance test', () => {
             .should('have.value', 'cheek to cheek');
     });
 
-    it('it should be possible to delete entries', function () {
+    it('it should be possible to delete specific entries', function () {
         cy.server({force404: true});
 
         cy.route("GET", "http://backend.de/api/booking-days/2002-02-01", "fixture:day_2002-02-01_entries.json")
@@ -88,6 +88,45 @@ describe('Some Acceptance test', () => {
             .should('have.length', 1)
             .eq(0)
             .should('have.value', 'JIRA-999');
+    });
+
+    it('should always be an empty entry there if all entries have been deleted', () => {
+        cy.server({force404: true});
+
+        cy.route("GET", "http://backend.de/api/booking-days/2002-02-01", "fixture:day_2002-02-01_entries.json")
+            .as("entriesLoad");
+        cy.route({
+            status: 204,
+            response: "",
+            method: "DELETE",
+            url: "http://backend.de/api/booking-days/2002-02-01/entries/*"
+        }).as("entryDelete");
+
+        cy.visit('http://localhost:3000').debug({
+            log: true
+        });
+        cy.wait("@entriesLoad");
+
+        cy
+            .getAllByTitle('remove').first()
+            .click();
+        cy.wait("@entryDelete");
+        cy
+            .getAllByTitle('remove').last()
+            .click();
+
+        cy.wait("@entryDelete");
+
+        cy.getByPlaceholderText('09:25')
+            .should('have.value', '');
+        cy.getByPlaceholderText('2:17')
+            .should('have.value', '');
+        cy.getByPlaceholderText('what has been done')
+            .should('have.value', '');
+        cy.getByPlaceholderText('TICKET-123')
+            .should('have.value', '');
+        cy.getByPlaceholderText('personal notes')
+            .should('have.value', '');
     });
 
 });

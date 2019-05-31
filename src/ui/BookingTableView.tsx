@@ -71,10 +71,12 @@ export default class BookingTableView extends Component<BookingTableViewProps, B
             .then((deletedEntry) => {
                 const bookingEntries = [...this.state.bookingEntries];
                 bookingEntries.splice(bookingEntries.indexOf(deletedEntry), 1);
-                this.setState({bookingEntries: bookingEntries});
+                this.setState({
+                    bookingEntries: (bookingEntries && bookingEntries.length > 0 ?
+                        bookingEntries :
+                        [this.newBookingEntry()])
+                });
             })
-
-
     }
 }
 

@@ -2,11 +2,10 @@ language: node_js
 node_js:
   - "10"
 cache:
+  yarn: true
   directories:
     - node_modules
 install:
-  - npm install
-before_script:
-  - npm run start -- --silent &
+  - yarn install
 script:
-  - npm run verifyCI
+  - npm run test

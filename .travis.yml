@@ -9,5 +9,4 @@ install:
 before_script:
   - npm run start -- --silent &
 script:
-  - npm run testCI
-  - npm run cypress
+  - npm run verifyCI

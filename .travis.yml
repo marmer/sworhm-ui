@@ -5,8 +5,9 @@ cache:
   yarn: true
   directories:
     - node_modules
-install:
-  - yarn install
+before_script:
+  - yarn build
+  - yarn start --silent &
 script:
-  - yarn verifyCI
+  - yarn tests
   - $(npm bin)/cypress run --record

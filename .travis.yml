@@ -10,7 +10,5 @@ install:
   - cypress install
 before_script:
   - yarn build
-  - yarn start --silent &
 script:
-  - yarn tests
-  - $(npm bin)/cypress run --record
+  - yarn verifyCI

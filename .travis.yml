@@ -7,5 +7,5 @@ cache:
 before_script:
   - npm run start -- --silent &
 script:
-  - npm testCI
+  - npm run testCI
   - npm run cypress:ci

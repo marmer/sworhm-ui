@@ -6,6 +6,8 @@ cache:
     - node_modules
 before_script:
   - npm run start -- --silent &
+install:
+  - npm install
 script:
   - npm run testCI
   - npm run cypress

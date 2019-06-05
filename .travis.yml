@@ -6,6 +6,6 @@ cache:
   directories:
     - node_modules
 before_script:
-  - yarn start
+  - yarn start &
 script:
   - yarn verify

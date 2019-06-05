@@ -12,5 +12,5 @@ before_script:
   - yarn build
   - yarn start --silent &
 script:
-  - yarn test
+  - yarn testCI
   - $(npm bin)/cypress run --record

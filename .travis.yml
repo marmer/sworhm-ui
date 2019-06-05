@@ -5,6 +5,7 @@ cache:
   yarn: true
   directories:
     - node_modules
+before_script:
+  - yarn start
 script:
-  - yarn install
-  - yarn verifyCI
+  - yarn verify

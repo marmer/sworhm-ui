@@ -9,27 +9,27 @@
   "description": "reference ui for sworhm. A project to log and analyze working hours",
   "license": "GPL-3.0",
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.8.2",
+    "@fortawesome/fontawesome-free": "^5.9.0",
     "bootstrap": "^4.3.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-router-dom": "^5.0.0",
+    "react-router-dom": "^5.0.1",
     "uuidv4": "^4.0.0"
   },
   "devDependencies": {
     "@bahmutov/add-typescript-to-cypress": "^2.1.0",
     "@types/jest": "^24.0.13",
-    "@types/node": "^12.0.2",
-    "@types/react": "^16.8.17",
+    "@types/node": "^12.0.6",
+    "@types/react": "^16.8.19",
     "@types/react-dom": "^16.8.4",
     "@types/react-router-dom": "^4.3.3",
     "@types/uuidv4": "^2.0.0",
-    "cypress": "3.3.1",
-    "cypress-testing-library": "^3.0.1",
+    "cypress": "^3.3.1",
+    "@testing-library/cypress": "^4.0.3",
     "react-scripts": "^3.0.1",
-    "start-server-and-test": "^1.9.0",
-    "typescript": "^3.4.5",
-    "webpack": "^4.31.0"
+    "start-server-and-test": "^1.9.1",
+    "typescript": "^3.5.1",
+    "webpack": "^4.33.0"
   },
   "scripts": {
     "start": "react-scripts start",

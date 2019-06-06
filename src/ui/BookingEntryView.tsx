@@ -61,9 +61,9 @@ export default class BookingEntryView extends React.Component<BookingEntryViewPr
                         {/*    <i className="fas fa-lock"/>*/}
                         {/*</button>*/}
                         {/**/}
-                        <button type="button" className="btn btn-primary" title="synced">
-                            <i className="fas fa-lock-open"/>
-                        </button>
+                        {/*<button type="button" className="btn btn-primary" title="synced">*/}
+                        {/*    <i className="fas fa-lock-open"/>*/}
+                        {/*</button>*/}
                         {/*<button type="button" className="btn btn-primary" title="sync">*/}
                         {/*    <i className="fas fa-sync-alt"/>*/}
                         {/*</button>*/}

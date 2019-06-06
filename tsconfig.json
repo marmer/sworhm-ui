@@ -20,7 +20,7 @@
     "jsx": "preserve",
     "types": [
       "cypress",
-      "cypress-testing-library/typings"
+      "@testing-library/cypress/typings"
     ]
   },
   "include": [

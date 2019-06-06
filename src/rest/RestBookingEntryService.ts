@@ -31,7 +31,6 @@ export default class RestBookingEntryService implements BookingEntryProviderServ
     delete(bookingEntry: BookingEntry): Promise<BookingEntry> {
         return new Promise<BookingEntry>(((resolve, reject) => {
             try {
-                // TODO: marmer 31.05.2019 Maybe it's better to have this url as part of the entity
                 new RestEndpoint(this.resource + "/entries/" + bookingEntry.id)
                     .performDelete()
                     .then(() => resolve(bookingEntry))
@@ -44,10 +43,10 @@ export default class RestBookingEntryService implements BookingEntryProviderServ
 
     private convertToEntries(responseDto: BookingDayDto): BookingEntry[] {
         return responseDto
-            ._embedded
             .entries
             .map((source) => {
-                return {id: source._links.self.href, ...source};
+                const {id, description, duration, notes, startTime, ticket} = source;
+                return {id, description, duration, notes, startTime, ticket};
             });
     }
 }

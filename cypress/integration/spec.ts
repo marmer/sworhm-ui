@@ -140,10 +140,9 @@ describe('Some Acceptance test', () => {
         });
 
         cy.wait("@entriesLoad");
-        cy.getByText("JIRA-999").wait(5000)
-        // .dblclick().wait(5000)
-        // .focus().wait(5000)
-        //     .clear().wait(5000)
+        // cy.getByText("08:15:00")
+        cy.getAllByPlaceholderText('09:25').eq(1)
+            .clear()
             .type("Wonderful task");
 
         cy.getAllByTitle('save').last()

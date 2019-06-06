@@ -41,7 +41,7 @@ export default class BookingEntryView extends React.Component<BookingEntryViewPr
                     <textarea rows={1} name="description" className="col description"
                               placeholder="what has been done" value={this.props.entry.description}/>
 
-                    <input type="textarea" name="ticket" className="col-2 ticket" placeholder="TICKET-123"
+                    <input type="text" name="ticket" className="col-2 ticket" placeholder="TICKET-123"
                            value={this.props.entry.ticket}/>
 
                     <textarea rows={1} name="notes" className="col notes" placeholder="personal notes"

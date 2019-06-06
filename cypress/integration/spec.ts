@@ -141,9 +141,13 @@ describe('Some Acceptance test', () => {
 
         cy.wait("@entriesLoad");
         // cy.getByText("08:15:00")
-        cy.getAllByPlaceholderText('09:25').eq(1)
-            .clear()
-            .type("Wonderful task");
+        // cy.getAllByPlaceholderText('09:25').eq(1)
+        //     .clear()
+        //     .type("Wonderful task");
+
+        cy.get("#someGoodOldInputField")
+            .type("Wonderful task")
+            .clear();
 
         cy.getAllByTitle('save').last()
             .click();

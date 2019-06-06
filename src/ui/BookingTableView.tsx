@@ -27,6 +27,8 @@ export default class BookingTableView extends Component<BookingTableViewProps, B
     render(): React.ReactElement {
         return <div>
             <h1>Sworhm UI</h1>
+            {/*// TODO: marmer 07.06.2019 Remove this field */}
+            <input value="test input value" id="someGoodOldInputField"/>
             {this.entries()}
         </div>;
     }

@@ -129,4 +129,26 @@ describe('Some Acceptance test', () => {
             .should('have.value', '');
     });
 
+    it('element should be saved if clicked on save and reloaded the day after', () => {
+        cy.server({force404: true});
+
+        cy.route("GET", "http://backend.de/api/booking-days/2002-02-01", "fixture:day_2002-02-01_entries.json")
+            .as("entriesLoad");
+
+        cy.visit('http://localhost:3000').debug({
+            log: true
+        });
+
+        cy.wait("@entriesLoad");
+        cy.getByText("JIRA-999").wait(5000)
+        // .dblclick().wait(5000)
+        // .focus().wait(5000)
+        //     .clear().wait(5000)
+            .type("Wonderful task");
+
+        cy.getAllByTitle('save').last()
+            .click();
+
+        // TODO: marmer 06.06.2019 make the test run and check whether the entry has been saved/updated
+    });
 });

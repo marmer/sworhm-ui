@@ -48,6 +48,11 @@ export default class BookingEntryView extends React.Component<BookingEntryViewPr
                               value={this.props.entry.notes}/>
 
                     <div className="col-1 btn-group actions">
+                        {/*TODO: marmer 06.06.2019 Delete this as soon as possible*/}
+                        <button type="button" className="btn btn-primary" title="save"
+                                onClick={this.onUpdate}>
+                            <i className="fas fa-save"/>
+                        </button>
                         <button type="button" className="btn btn-primary" title="add"
                                 onClick={this.onAdd}>
                             <i className="fas fa-plus"/>

@@ -3,6 +3,11 @@ import './BookingEntryView.css'
 import BookingEntry from "../core/model/BookingEntry";
 
 interface BookingEntryViewState {
+    startTime?: string;
+    duration?: string;
+    description?: string;
+    ticket?: string;
+    notes?: string;
 }
 
 export interface BookingEntryViewProps {
@@ -28,52 +33,77 @@ export interface BookingEntryViewProps {
 
 export default class BookingEntryView extends React.Component<BookingEntryViewProps, BookingEntryViewState> {
 
+
+    constructor(props: Readonly<BookingEntryViewProps>) {
+        super(props);
+        this.state = {...props.entry};
+    }
+
     render(): React.ReactNode {
-        return (
-            <div className="container BookingEntryView">
-                <div className="row no-gutters">
-                    <input type="text" name="start" className="col-1 start" placeholder="09:25"
-                           value={this.props.entry.startTime}/>
+        return <div className="container BookingEntryView">
+            <div className="row no-gutters">
+                <input type="text" name="start" className="col-1 start" placeholder="09:25"
+                       value={this.state.startTime} onChange={e => this.onStartTimeChange(e)}/>
 
-                    <input type="text" name="duration" className="col-1 duration"
-                           placeholder='2:17' value={this.props.entry.duration}/>
+                <input type="text" name="duration" className="col-1 duration"
+                       placeholder='2:17' value={this.state.duration}
+                       onChange={e => this.onDurationChange(e)}/>
 
-                    <textarea rows={1} name="description" className="col description"
-                              placeholder="what has been done" value={this.props.entry.description}/>
+                <textarea rows={1} name="description" className="col description"
+                          placeholder="what has been done" value={this.state.description}
+                          onChange={e => this.onDescriptionChange(e)}/>
 
-                    <input type="text" name="ticket" className="col-2 ticket" placeholder="TICKET-123"
-                           value={this.props.entry.ticket}/>
+                <input type="text" name="ticket" className="col-2 ticket" placeholder="TICKET-123"
+                       value={this.state.ticket} onChange={e => this.onTicketChange(e)}/>
 
-                    <textarea rows={1} name="notes" className="col notes" placeholder="personal notes"
-                              value={this.props.entry.notes}/>
+                <textarea rows={1} name="notes" className="col notes" placeholder="personal notes"
+                          value={this.state.notes} onChange={e => this.onNotesChange(e)}/>
 
-                    <div className="col-1 btn-group actions">
-                        {/*TODO: marmer 06.06.2019 Delete this as soon as possible*/}
-                        <button type="button" className="btn btn-primary" title="save"
-                                onClick={this.onUpdate}>
-                            <i className="fas fa-save"/>
-                        </button>
-                        <button type="button" className="btn btn-primary" title="add"
-                                onClick={this.onAdd}>
-                            <i className="fas fa-plus"/>
-                        </button>
-                        {/*<button type="button" className="btn btn-primary" title="synced">*/}
-                        {/*    <i className="fas fa-lock"/>*/}
-                        {/*</button>*/}
-                        {/**/}
-                        {/*<button type="button" className="btn btn-primary" title="synced">*/}
-                        {/*    <i className="fas fa-lock-open"/>*/}
-                        {/*</button>*/}
-                        {/*<button type="button" className="btn btn-primary" title="sync">*/}
-                        {/*    <i className="fas fa-sync-alt"/>*/}
-                        {/*</button>*/}
-                        <button type="button" className="btn btn-danger" title="remove" onClick={this.onRemove}>
-                            <i className="fas fa-trash-alt"/>
-                        </button>
-                    </div>
+                <div className="col-1 btn-group actions">
+                    <button type="button" className="btn btn-primary" title="save"
+                            onClick={this.onUpdate}>
+                        <i className="fas fa-save"/>
+                    </button>
+                    <button type="button" className="btn btn-primary" title="add"
+                            onClick={this.onAdd}>
+                        <i className="fas fa-plus"/>
+                    </button>
+                    {/*<button type="button" className="btn btn-primary" title="synced">*/}
+                    {/*    <i className="fas fa-lock"/>*/}
+                    {/*</button>*/}
+                    {/**/}
+                    {/*<button type="button" className="btn btn-primary" title="synced">*/}
+                    {/*    <i className="fas fa-lock-open"/>*/}
+                    {/*</button>*/}
+                    {/*<button type="button" className="btn btn-primary" title="sync">*/}
+                    {/*    <i className="fas fa-sync-alt"/>*/}
+                    {/*</button>*/}
+                    <button type="button" className="btn btn-danger" title="remove" onClick={this.onRemove}>
+                        <i className="fas fa-trash-alt"/>
+                    </button>
                 </div>
             </div>
-        );
+        </div>;
+    }
+
+    private onTicketChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+        this.setState({ticket: e.target.value});
+    }
+
+    private onStartTimeChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+        this.setState({startTime: e.target.value});
+    }
+
+    private onDurationChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+        this.setState({duration: e.target.value});
+    }
+
+    private onDescriptionChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+        this.setState({description: e.target.value});
+    }
+
+    private onNotesChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+        this.setState({notes: e.target.value});
     }
 
     private onAdd = () => {

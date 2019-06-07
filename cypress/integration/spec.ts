@@ -143,14 +143,14 @@ describe('Some Acceptance test', () => {
 
         cy.getAllByPlaceholderText("09:25").last()
             .type("{selectall}05:30");
-        cy.getAllByPlaceholderText('2:17')
-            .type("1:15");
-        cy.getAllByPlaceholderText('what has been done')
-            .type("sleeping");
-        cy.getAllByPlaceholderText('TICKET-123')
-            .type("ABC-321");
-        cy.getAllByPlaceholderText('personal notes')
-            .type("It was relaxing");
+        cy.getAllByPlaceholderText('2:17').last()
+            .type("{selectall}1:15");
+        cy.getAllByPlaceholderText('what has been done').last()
+            .type("{selectall}sleeping");
+        cy.getAllByPlaceholderText('TICKET-123').last()
+            .type("{selectall}ABC-321");
+        cy.getAllByPlaceholderText('personal notes').last()
+            .type("{selectall}It was relaxing");
 
         cy.getAllByTitle('save').last()
             .click();

@@ -43,21 +43,21 @@ export default class BookingEntryView extends React.Component<BookingEntryViewPr
         return <div className="container BookingEntryView">
             <div className="row no-gutters">
                 <input type="text" name="start" className="col-1 start" placeholder="09:25"
-                       value={this.state.startTime} onChange={e => this.onStartTimeChange(e)}/>
+                       value={this.state.startTime} onChange={this.onStartTimeChange}/>
 
                 <input type="text" name="duration" className="col-1 duration"
                        placeholder='2:17' value={this.state.duration}
-                       onChange={e => this.onDurationChange(e)}/>
+                       onChange={this.onDurationChange}/>
 
                 <textarea rows={1} name="description" className="col description"
                           placeholder="what has been done" value={this.state.description}
-                          onChange={e => this.onDescriptionChange(e)}/>
+                          onChange={this.onDescriptionChange}/>
 
                 <input type="text" name="ticket" className="col-2 ticket" placeholder="TICKET-123"
-                       value={this.state.ticket} onChange={e => this.onTicketChange(e)}/>
+                       value={this.state.ticket} onChange={this.onTicketChange}/>
 
                 <textarea rows={1} name="notes" className="col notes" placeholder="personal notes"
-                          value={this.state.notes} onChange={e => this.onNotesChange(e)}/>
+                          value={this.state.notes} onChange={this.onNotesChange}/>
 
                 <div className="col-1 btn-group actions">
                     <button type="button" className="btn btn-primary" title="save"
@@ -86,25 +86,25 @@ export default class BookingEntryView extends React.Component<BookingEntryViewPr
         </div>;
     }
 
-    private onTicketChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+    private onTicketChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         this.setState({ticket: e.target.value});
-    }
+    };
 
-    private onStartTimeChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+    private onStartTimeChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         this.setState({startTime: e.target.value});
-    }
+    };
 
-    private onDurationChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+    private onDurationChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         this.setState({duration: e.target.value});
-    }
+    };
 
-    private onDescriptionChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+    private onDescriptionChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         this.setState({description: e.target.value});
-    }
+    };
 
-    private onNotesChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+    private onNotesChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         this.setState({notes: e.target.value});
-    }
+    };
 
     private onAdd = () => {
         if (this.props.onAdd)

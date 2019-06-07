@@ -7,10 +7,10 @@ cache:
     - node_modules
 install:
   - yarn install
-  - $(npm bin)/cypress install
+#  - $(npm bin)/cypress install
 before_script:
   - yarn build
   - yarn start --silent &
 script:
   - yarn testCI
-  - $(npm bin)/cypress run --record
+#  - $(npm bin)/cypress run --record

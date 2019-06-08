@@ -9,4 +9,6 @@ export default class BookingEntry {
     constructor(id: string) {
         this.id = id;
     }
+
+    public hasIdOf = (bookingEntry: BookingEntry): boolean => this.id === bookingEntry.id;
 }

@@ -44,12 +44,16 @@ export default class BookingTableView extends Component<BookingTableViewProps, B
     }
 
     private entries() {
-        return this.state.bookingEntries.map(entry =>
-            <BookingEntryView key={entry.id}
-                              onAdd={this.addNewRowAfter}
-                              onRemove={this.removeEntry}
-                              onUpdate={this.updateEntry}
-                              entry={entry}/>);
+        // TODO: marmer 08.06.2019 get out why map is not a function anymore
+        return this.state.bookingEntries.map(this.toBookingEntryView);
+    }
+
+    private toBookingEntryView = (entry: BookingEntry) => {
+        return <BookingEntryView key={entry.id}
+                                 onAdd={this.addNewRowAfter}
+                                 onRemove={this.removeEntry}
+                                 onUpdate={this.updateEntry}
+                                 entry={entry}/>;
     }
 
     private addNewRowAfter = (bookingEntry: BookingEntry) => {
@@ -62,9 +66,19 @@ export default class BookingTableView extends Component<BookingTableViewProps, B
         });
     };
 
-    private updateEntry = (bookingEntry: BookingEntry) => {
-        alert("Update: " + bookingEntry)
+
+    private updateEntry = (updatedEntry: BookingEntry): void => {
+        const bookingEntries: BookingEntry[] = {...this.state.bookingEntries};
+        bookingEntries[this.entryIndexOf(updatedEntry)] = updatedEntry
+        this.setState({bookingEntries: bookingEntries});
+
+        // TODO: marmer 08.06.2019 Perform the real update
+
     };
+
+    private entryIndexOf(updatedEntry: BookingEntry) {
+        return this.state.bookingEntries.findIndex(value => value.hasIdOf(updatedEntry));
+    }
 
     private removeEntry = (entryToDelete: BookingEntry) => {
         this.props.bookingProviderService.delete(entryToDelete)

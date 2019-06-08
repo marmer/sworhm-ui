@@ -46,7 +46,7 @@ export default class RestBookingEntryService implements BookingEntryProviderServ
             .entries
             .map((source) => {
                 const {id, description, duration, notes, startTime, ticket} = source;
-                return {id, description, duration, notes, startTime, ticket};
+                return {...this.newBookingEntry(), id, description, duration, notes, startTime, ticket};
             });
     }
 }

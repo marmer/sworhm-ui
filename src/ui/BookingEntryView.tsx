@@ -26,9 +26,10 @@ export interface BookingEntryViewProps {
 
     /**
      * Called if an update action has been performed
-     * @param bookingEntry of the updated entryl
+     * @param updatedEntry of the updated entry
+     * @param oldEntry of the updated entry
      */
-    onUpdate?(bookingEntry: BookingEntry): void
+    onUpdate?(updatedEntry: BookingEntry, oldEntry: BookingEntry): void
 }
 
 export default class BookingEntryView extends React.Component<BookingEntryViewProps, BookingEntryViewState> {
@@ -118,6 +119,6 @@ export default class BookingEntryView extends React.Component<BookingEntryViewPr
 
     private onUpdate = () => {
         if (this.props.onUpdate)
-            this.props.onUpdate(this.props.entry);
+            this.props.onUpdate(this.props.entry, {...this.props.entry, ...this.state});
     }
 }

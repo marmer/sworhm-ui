@@ -132,8 +132,18 @@ describe('Some Acceptance test', () => {
     it('element should be saved if clicked on save and reloaded the day after', () => {
         cy.server({force404: true});
 
-        cy.route("GET", "http://backend.de/api/booking-days/2002-02-01", "fixture:day_2002-02-01_entries.json")
-            .as("entriesLoad");
+        cy.route({
+            method: "GET",
+            url: "http://backend.de/api/booking-days/2002-02-01",
+            response: "fixture:day_2002-02-01_entries.json",
+            status: 200
+        }).as("entriesLoad");
+
+        cy.route({
+            method: "PUT",
+            url: "http://backend.de/api/booking-days/2002-02-01/entries/65b8818f-0320-450b-9da0-49f3269bafd7",
+            status: 200
+        }).as("entryUpdate");
 
         cy.visit('http://localhost:3000').debug({
             log: true
@@ -141,20 +151,23 @@ describe('Some Acceptance test', () => {
 
         cy.wait("@entriesLoad");
 
-        cy.getAllByPlaceholderText("09:25").last()
+        cy.getAllByPlaceholderText("09:25").first()
             .type("{selectall}05:30");
-        cy.getAllByPlaceholderText('2:17').last()
-            .type("{selectall}1:15");
-        cy.getAllByPlaceholderText('what has been done').last()
+        cy.getAllByPlaceholderText('2:17').first()
+            .type("{selectall}01:15");
+        cy.getAllByPlaceholderText('what has been done').first()
             .type("{selectall}sleeping");
-        cy.getAllByPlaceholderText('TICKET-123').last()
+        cy.getAllByPlaceholderText('TICKET-123').first()
             .type("{selectall}ABC-321");
-        cy.getAllByPlaceholderText('personal notes').last()
+        cy.getAllByPlaceholderText('personal notes').first()
             .type("{selectall}It was relaxing");
 
-        cy.getAllByTitle('save').last()
+        cy.getAllByTitle('save').first()
             .click();
 
-        // TODO: marmer 06.06.2019 make the test run and check whether the entry has been saved/updated
+        cy.wait("@entryUpdate")
+            .then(xhr => {
+                assert.strictEqual(xhr.requestBody, "fixture:day_2002-02-01_entries_1_updated.json")
+            })
     });
 });

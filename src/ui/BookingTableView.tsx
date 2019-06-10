@@ -36,7 +36,7 @@ export default class BookingTableView extends Component<BookingTableViewProps, B
     }
 
     private loadBookings() {
-        this.props.bookingEntryService.getBookingEntries()
+        this.props.bookingEntryService.getAll()
             .then(value =>
                 this.setState({
                     bookingEntries: value

@@ -1,11 +1,11 @@
 import BookingEntry from "../core/model/BookingEntry";
-import BookingEntryProviderService from "../core/service/BookingEntryService";
+import BookingEntryService from "../core/service/BookingEntryService";
 import BookingDayDto from "../sworhm-data/model/BookingDayDto";
 import RestEndpoint from "./RestEndpoint";
 import uuidv4 from "uuidv4";
 import BookingEntryDto from "../sworhm-data/model/BookingEntryDto";
 
-export default class RestBookingEntryService implements BookingEntryProviderService {
+export default class RestBookingEntryRepository implements BookingEntryService {
     private resource: string;
 
     constructor(resource: string) {

@@ -13,7 +13,7 @@ export default class RestBookingEntryRepository implements BookingEntryService {
         this.resource = this.baseUri + "/" + day + "/entries";
     }
 
-    getBookingEntries(): Promise<BookingEntry[]> {
+    getAll(): Promise<BookingEntry[]> {
         return new Promise<BookingEntry[]>((resolve, reject) => {
             try {
                 new RestEndpoint<BookingEntriesDto>(this.resource)

@@ -8,7 +8,7 @@ interface BookingTableViewState {
 }
 
 export interface BookingTableViewProps {
-    bookingProviderService: BookingEntryService,
+    bookingEntryService: BookingEntryService,
 }
 
 export default class BookingTableView extends Component<BookingTableViewProps, BookingTableViewState> {
@@ -32,11 +32,11 @@ export default class BookingTableView extends Component<BookingTableViewProps, B
     }
 
     private newBookingEntry() {
-        return this.props.bookingProviderService.newBookingEntry();
+        return this.props.bookingEntryService.create();
     }
 
     private loadBookings() {
-        this.props.bookingProviderService.getBookingEntries()
+        this.props.bookingEntryService.getBookingEntries()
             .then(value =>
                 this.setState({
                     bookingEntries: value
@@ -71,8 +71,8 @@ export default class BookingTableView extends Component<BookingTableViewProps, B
         bookingEntries[this.entryIndexOf(updatedEntry)] = updatedEntry;
         this.setState({bookingEntries: bookingEntries});
 
-        // TODO: marmer 08.06.2019 Perform the real update
-
+        this.props.bookingEntryService.save(updatedEntry);
+        // TODO: marmer 10.06.2019 Handle unsuccessful tries
     };
 
     private entryIndexOf(updatedEntry: BookingEntry) {
@@ -80,7 +80,7 @@ export default class BookingTableView extends Component<BookingTableViewProps, B
     }
 
     private removeEntry = (entryToDelete: BookingEntry) => {
-        this.props.bookingProviderService.delete(entryToDelete)
+        this.props.bookingEntryService.delete(entryToDelete)
             .then((deletedEntry) => {
                 const bookingEntries = [...this.state.bookingEntries];
                 bookingEntries.splice(bookingEntries.indexOf(deletedEntry), 1);

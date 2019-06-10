@@ -152,9 +152,9 @@ describe('Some Acceptance test', () => {
         cy.wait("@entriesLoad");
 
         cy.getAllByPlaceholderText("09:25").first()
-            .type("{selectall}05:30");
+            .type("{selectall}5:30");
         cy.getAllByPlaceholderText('2:17').first()
-            .type("{selectall}01:15");
+            .type("{selectall}1:15");
         cy.getAllByPlaceholderText('what has been done').first()
             .type("{selectall}sleeping");
         cy.getAllByPlaceholderText('TICKET-123').first()
@@ -167,7 +167,8 @@ describe('Some Acceptance test', () => {
 
         cy.wait("@entryUpdate")
             .then(xhr => {
-                assert.strictEqual(xhr.requestBody, "fixture:day_2002-02-01_entries_1_updated.json")
+                cy.fixture("day_2002-02-01_entries_1_updated.json")
+                    .then(updatedEntry1 => assert.deepEqual(xhr.requestBody, updatedEntry1))
             })
     });
 });

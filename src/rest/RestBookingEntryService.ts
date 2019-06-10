@@ -1,21 +1,22 @@
 import BookingEntry from "../core/model/BookingEntry";
 import BookingEntryService from "../core/service/BookingEntryService";
-import BookingDayDto from "../sworhm-data/model/BookingDayDto";
+import BookingEntriesDto from "../sworhm-data/model/BookingEntriesDto";
 import RestEndpoint from "./RestEndpoint";
 import uuidv4 from "uuidv4";
 import BookingEntryDto from "../sworhm-data/model/BookingEntryDto";
 
 export default class RestBookingEntryRepository implements BookingEntryService {
+    private readonly baseUri = "http://backend.de/api/booking-days";
     private resource: string;
 
-    constructor(resource: string) {
-        this.resource = resource;
+    constructor(day: string) {
+        this.resource = this.baseUri + "/" + day + "/entries";
     }
 
     getBookingEntries(): Promise<BookingEntry[]> {
         return new Promise<BookingEntry[]>((resolve, reject) => {
             try {
-                new RestEndpoint<BookingDayDto>(this.resource)
+                new RestEndpoint<BookingEntriesDto>(this.resource)
                     .performGet()
                     .then(bookingDay => resolve(this.convertToEntries(bookingDay)))
                     .catch(reject);
@@ -32,7 +33,7 @@ export default class RestBookingEntryRepository implements BookingEntryService {
     delete(bookingEntry: BookingEntry): Promise<BookingEntry> {
         return new Promise<BookingEntry>(((resolve, reject) => {
             try {
-                new RestEndpoint(this.resource + "/entries/" + bookingEntry.id)
+                new RestEndpoint(this.resource + "/" + bookingEntry.id)
                     .performDelete()
                     .then(() => resolve(bookingEntry))
                     .catch(reject);
@@ -46,7 +47,7 @@ export default class RestBookingEntryRepository implements BookingEntryService {
         return new Promise<BookingEntry>(((resolve, reject) => {
             try {
                 const dto: BookingEntryDto = {...bookingEntry};
-                new RestEndpoint(this.resource + "/entries/" + bookingEntry.id)
+                new RestEndpoint(this.resource + "/" + bookingEntry.id)
                     .performPut(dto)
                     .then(() => resolve(bookingEntry))
                     .catch(reject);
@@ -56,7 +57,7 @@ export default class RestBookingEntryRepository implements BookingEntryService {
         }));
     }
 
-    private convertToEntries(responseDto: BookingDayDto): BookingEntry[] {
+    private convertToEntries(responseDto: BookingEntriesDto): BookingEntry[] {
         return responseDto
             .entries
             .map((source) => {

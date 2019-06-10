@@ -14,7 +14,7 @@ export default class BookingDayView extends Component<BookingDayViewProps, Booki
     render(): React.ReactElement {
         return <div>
             <BookingTableView
-                bookingEntryService={new RestBookingEntryService("http://backend.de/api/booking-days/2002-02-01")}/>
+                bookingEntryService={new RestBookingEntryService("2002-02-01")}/>
         </div>;
     }
 

@@ -1,6 +1,5 @@
 import BookingEntryDto from "./BookingEntryDto";
 
-export default interface BookingDayDto {
-    day: string,
+export default interface BookingEntriesDto {
     entries: BookingEntryDto[]
 }

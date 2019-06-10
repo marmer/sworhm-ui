@@ -44,7 +44,6 @@ export default class BookingTableView extends Component<BookingTableViewProps, B
     }
 
     private entries() {
-        // TODO: marmer 08.06.2019 get out why map is not a function anymore
         return this.state.bookingEntries.map(this.toBookingEntryView);
     }
 
@@ -54,7 +53,7 @@ export default class BookingTableView extends Component<BookingTableViewProps, B
                                  onRemove={this.removeEntry}
                                  onUpdate={this.updateEntry}
                                  entry={entry}/>;
-    }
+    };
 
     private addNewRowAfter = (bookingEntry: BookingEntry) => {
         const entries = [...this.state.bookingEntries];
@@ -68,8 +67,8 @@ export default class BookingTableView extends Component<BookingTableViewProps, B
 
 
     private updateEntry = (updatedEntry: BookingEntry): void => {
-        const bookingEntries: BookingEntry[] = {...this.state.bookingEntries};
-        bookingEntries[this.entryIndexOf(updatedEntry)] = updatedEntry
+        const bookingEntries: BookingEntry[] = [...this.state.bookingEntries];
+        bookingEntries[this.entryIndexOf(updatedEntry)] = updatedEntry;
         this.setState({bookingEntries: bookingEntries});
 
         // TODO: marmer 08.06.2019 Perform the real update

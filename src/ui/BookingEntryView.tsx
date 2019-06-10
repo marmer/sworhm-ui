@@ -119,6 +119,6 @@ export default class BookingEntryView extends React.Component<BookingEntryViewPr
 
     private onUpdate = () => {
         if (this.props.onUpdate)
-            this.props.onUpdate(this.props.entry, {...this.props.entry, ...this.state});
+            this.props.onUpdate({...this.props.entry, ...this.state}, this.props.entry);
     }
 }

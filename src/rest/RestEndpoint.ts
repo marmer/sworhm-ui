@@ -19,6 +19,10 @@ export default class RestEndpoint<T> {
         return this.perform("DELETE", expectedStatus)
     }
 
+    public performPut<B>(body: B, expectedStatus = HttpStatus.OK): Promise<T> {
+        return this.perform("PUT", expectedStatus, body);
+    }
+
     private perform<B>(method: string, expectedStatus: HttpStatus, body?: B): Promise<T> {
         return new Promise<T>((resolve, reject) => {
             const xhr = new XMLHttpRequest();
@@ -36,7 +40,7 @@ export default class RestEndpoint<T> {
             });
             xhr.open(method, this.url, true);
             xhr.setRequestHeader('Accept', 'application/JSON');
-            xhr.send(body ? JSON.stringify(body) : null);
+            xhr.send(body !== null || body !== undefined ? JSON.stringify(body) : null);
         });
     }
 }

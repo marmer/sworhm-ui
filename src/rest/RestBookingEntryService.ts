@@ -3,6 +3,7 @@ import BookingEntryProviderService from "../core/service/BookingEntryService";
 import BookingDayDto from "../sworhm-data/model/BookingDayDto";
 import RestEndpoint from "./RestEndpoint";
 import uuidv4 from "uuidv4";
+import BookingEntryDto from "../sworhm-data/model/BookingEntryDto";
 
 export default class RestBookingEntryService implements BookingEntryProviderService {
     private resource: string;
@@ -24,7 +25,7 @@ export default class RestBookingEntryService implements BookingEntryProviderServ
         });
     }
 
-    newBookingEntry(): BookingEntry {
+    create(): BookingEntry {
         return new BookingEntry(uuidv4());
     }
 
@@ -41,12 +42,26 @@ export default class RestBookingEntryService implements BookingEntryProviderServ
         }));
     }
 
+    save(bookingEntry: BookingEntry): Promise<BookingEntry> {
+        return new Promise<BookingEntry>(((resolve, reject) => {
+            try {
+                const dto: BookingEntryDto = {...bookingEntry};
+                new RestEndpoint(this.resource + "/entries/" + bookingEntry.id)
+                    .performPut(dto)
+                    .then(() => resolve(bookingEntry))
+                    .catch(reject);
+            } catch (e) {
+                reject();
+            }
+        }));
+    }
+
     private convertToEntries(responseDto: BookingDayDto): BookingEntry[] {
         return responseDto
             .entries
             .map((source) => {
                 const {id, description, duration, notes, startTime, ticket} = source;
-                return {...this.newBookingEntry(), id, description, duration, notes, startTime, ticket};
+                return {...this.create(), id, description, duration, notes, startTime, ticket};
             });
     }
 }

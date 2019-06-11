@@ -2,19 +2,24 @@ import React, {Component} from 'react';
 import BookingEntryView from "./BookingEntryView";
 import BookingEntry from "../core/model/BookingEntry";
 import BookingEntryService from "../core/service/BookingEntryService";
+import CoreServiceFactory from "../core/service/CoreServiceFactory";
 
 interface BookingTableViewState {
     bookingEntries: BookingEntry[];
 }
 
 export interface BookingTableViewProps {
-    bookingEntryService: BookingEntryService,
+    coreServicesFactory: CoreServiceFactory;
+    day: string;
 }
 
 export default class BookingTableView extends Component<BookingTableViewProps, BookingTableViewState> {
 
+    private readonly bookingEntryService: BookingEntryService;
+
     constructor(props: Readonly<BookingTableViewProps>) {
         super(props);
+        this.bookingEntryService = this.props.coreServicesFactory.getBookingEntryService(this.props.day);
 
         this.state = {
             bookingEntries: [
@@ -32,11 +37,11 @@ export default class BookingTableView extends Component<BookingTableViewProps, B
     }
 
     private newBookingEntry() {
-        return this.props.bookingEntryService.createBookingEntry();
+        return this.bookingEntryService.createBookingEntry();
     }
 
     private loadBookings() {
-        this.props.bookingEntryService.getAll()
+        this.bookingEntryService.getAll()
             .then(value =>
                 this.setState({
                     bookingEntries: value
@@ -71,7 +76,7 @@ export default class BookingTableView extends Component<BookingTableViewProps, B
         bookingEntries[this.entryIndexOf(updatedEntry)] = updatedEntry;
         this.setState({bookingEntries: bookingEntries});
 
-        this.props.bookingEntryService.save(updatedEntry);
+        this.bookingEntryService.save(updatedEntry);
         // TODO: marmer 10.06.2019 Handle unsuccessful tries
     };
 
@@ -80,7 +85,7 @@ export default class BookingTableView extends Component<BookingTableViewProps, B
     }
 
     private removeEntry = (entryToDelete: BookingEntry) => {
-        this.props.bookingEntryService.delete(entryToDelete)
+        this.bookingEntryService.delete(entryToDelete)
             .then((deletedEntry) => {
                 const bookingEntries = [...this.state.bookingEntries];
                 bookingEntries.splice(bookingEntries.indexOf(deletedEntry), 1);

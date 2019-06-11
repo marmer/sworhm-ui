@@ -32,7 +32,7 @@ export default class BookingTableView extends Component<BookingTableViewProps, B
     }
 
     private newBookingEntry() {
-        return this.props.bookingEntryService.create();
+        return this.props.bookingEntryService.createBookingEntry();
     }
 
     private loadBookings() {

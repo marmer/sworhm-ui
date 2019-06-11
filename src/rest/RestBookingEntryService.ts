@@ -26,7 +26,7 @@ export default class RestBookingEntryRepository implements BookingEntryService {
         });
     }
 
-    create(): BookingEntry {
+    createBookingEntry(): BookingEntry {
         return new BookingEntry(uuidv4());
     }
 
@@ -62,7 +62,7 @@ export default class RestBookingEntryRepository implements BookingEntryService {
             .entries
             .map((source) => {
                 const {id, description, duration, notes, startTime, ticket} = source;
-                return {...this.create(), id, description, duration, notes, startTime, ticket};
+                return {...this.createBookingEntry(), id, description, duration, notes, startTime, ticket};
             });
     }
 }

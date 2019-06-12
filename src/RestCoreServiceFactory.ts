@@ -1,9 +1,9 @@
 import CoreServiceFactory from "./core/service/CoreServiceFactory";
-import BookingEntryService from "./core/service/BookingEntryService";
+import BookingService from "./core/service/BookingService";
 import RestBookingEntryService from "./rest/RestBookingEntryService";
 
 export default class RestCoreServiceFactory implements CoreServiceFactory {
-    getBookingEntryService(day: string): BookingEntryService {
+    getBookingService(day: string): BookingService {
         return new RestBookingEntryService(day);
     }
 }

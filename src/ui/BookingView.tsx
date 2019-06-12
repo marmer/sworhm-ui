@@ -1,8 +1,8 @@
 import React from 'react';
-import './BookingEntryView.css'
-import BookingEntry from "../core/model/BookingEntry";
+import './BookingView.css'
+import Booking from "../core/model/Booking";
 
-interface BookingEntryViewState {
+interface BookingViewState {
     startTime?: string;
     duration?: string;
     description?: string;
@@ -10,38 +10,38 @@ interface BookingEntryViewState {
     notes?: string;
 }
 
-export interface BookingEntryViewProps {
-    entry: BookingEntry
+export interface BookingViewProps {
+    entry: Booking
     /**
      * Called if an add action was performed
-     * @param bookingEntry where to add an entry
+     * @param booking where to add an entry
      */
-    onAdd?(bookingEntry: BookingEntry): void
+    onAdd?(booking: Booking): void
 
     /**
      * Called if a remove action has been performed
-     * @param bookingEntry where to add an entry
+     * @param booking where to add an entry
      */
-    onRemove?(bookingEntry: BookingEntry): void
+    onRemove?(booking: Booking): void
 
     /**
      * Called if an update action has been performed
-     * @param updatedEntry of the updated entry
-     * @param oldEntry of the updated entry
+     * @param updatedBooking of the updated entry
+     * @param oldBooking of the updated entry
      */
-    onUpdate?(updatedEntry: BookingEntry, oldEntry: BookingEntry): void
+    onUpdate?(updatedBooking: Booking, oldBooking: Booking): void
 }
 
-export default class BookingEntryView extends React.Component<BookingEntryViewProps, BookingEntryViewState> {
+export default class BookingView extends React.Component<BookingViewProps, BookingViewState> {
 
 
-    constructor(props: Readonly<BookingEntryViewProps>) {
+    constructor(props: Readonly<BookingViewProps>) {
         super(props);
         this.state = {...props.entry};
     }
 
     render(): React.ReactNode {
-        return <div className="container BookingEntryView">
+        return <div className="container BookingView">
             <div className="row no-gutters">
                 <input type="text" name="start" className="col-1 start" placeholder="09:25"
                        value={this.state.startTime} onChange={this.onStartTimeChange}/>

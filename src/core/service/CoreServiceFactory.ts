@@ -1,5 +1,5 @@
-import BookingEntryService from "./BookingEntryService";
+import BookingService from "./BookingService";
 
 export default interface CoreServiceFactory {
-    getBookingEntryService(day: string): BookingEntryService;
+    getBookingService(day: string): BookingService;
 }

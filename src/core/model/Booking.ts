@@ -1,4 +1,4 @@
-export default class BookingEntry {
+export default class Booking {
     id: string;
     startTime?: string;
     duration?: string;
@@ -10,5 +10,5 @@ export default class BookingEntry {
         this.id = id;
     }
 
-    public hasIdOf = (bookingEntry: BookingEntry): boolean => this.id === bookingEntry.id;
+    public hasIdOf = (booking: Booking): boolean => this.id === booking.id;
 }

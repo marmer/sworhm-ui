@@ -1,11 +1,11 @@
-import BookingEntry from "../core/model/BookingEntry";
-import BookingEntryService from "../core/service/BookingEntryService";
-import BookingEntriesDto from "../sworhm-data/model/BookingEntriesDto";
+import Booking from "../core/model/Booking";
+import BookingService from "../core/service/BookingService";
+import BookingsDto from "../sworhm-data/model/BookingsDto";
 import RestEndpoint from "./RestEndpoint";
 import uuidv4 from "uuidv4";
-import BookingEntryDto from "../sworhm-data/model/BookingEntryDto";
+import BookingDto from "../sworhm-data/model/BookingDto";
 
-export default class RestBookingEntryRepository implements BookingEntryService {
+export default class RestBookingRepository implements BookingService {
     private readonly baseUri = "http://backend.de/api/days";
     private resource: string;
 
@@ -13,12 +13,12 @@ export default class RestBookingEntryRepository implements BookingEntryService {
         this.resource = this.baseUri + "/" + day + "/bookings";
     }
 
-    getAll(): Promise<BookingEntry[]> {
-        return new Promise<BookingEntry[]>((resolve, reject) => {
+    getAll(): Promise<Booking[]> {
+        return new Promise<Booking[]>((resolve, reject) => {
             try {
-                new RestEndpoint<BookingEntriesDto>(this.resource)
+                new RestEndpoint<BookingsDto>(this.resource)
                     .performGet()
-                    .then(bookingDay => resolve(this.convertToEntries(bookingDay)))
+                    .then(bookingsDto => resolve(this.convertToBookings(bookingsDto)))
                     .catch(reject);
             } catch (e) {
                 reject();
@@ -26,16 +26,16 @@ export default class RestBookingEntryRepository implements BookingEntryService {
         });
     }
 
-    createBookingEntry(): BookingEntry {
-        return new BookingEntry(uuidv4());
+    createBookingEntry(): Booking {
+        return new Booking(uuidv4());
     }
 
-    delete(bookingEntry: BookingEntry): Promise<BookingEntry> {
-        return new Promise<BookingEntry>(((resolve, reject) => {
+    delete(booking: Booking): Promise<Booking> {
+        return new Promise<Booking>(((resolve, reject) => {
             try {
-                new RestEndpoint(this.resource + "/" + bookingEntry.id)
+                new RestEndpoint(this.resource + "/" + booking.id)
                     .performDelete()
-                    .then(() => resolve(bookingEntry))
+                    .then(() => resolve(booking))
                     .catch(reject);
             } catch (e) {
                 reject();
@@ -43,13 +43,13 @@ export default class RestBookingEntryRepository implements BookingEntryService {
         }));
     }
 
-    save(bookingEntry: BookingEntry): Promise<BookingEntry> {
-        return new Promise<BookingEntry>(((resolve, reject) => {
+    save(booking: Booking): Promise<Booking> {
+        return new Promise<Booking>(((resolve, reject) => {
             try {
-                const dto: BookingEntryDto = {...bookingEntry};
-                new RestEndpoint(this.resource + "/" + bookingEntry.id)
+                const dto: BookingDto = {...booking};
+                new RestEndpoint(this.resource + "/" + booking.id)
                     .performPut(dto)
-                    .then(() => resolve(bookingEntry))
+                    .then(() => resolve(booking))
                     .catch(reject);
             } catch (e) {
                 reject();
@@ -57,7 +57,7 @@ export default class RestBookingEntryRepository implements BookingEntryService {
         }));
     }
 
-    private convertToEntries(responseDto: BookingEntriesDto): BookingEntry[] {
+    private convertToBookings(responseDto: BookingsDto): Booking[] {
         return responseDto
             .entries
             .map((source) => {

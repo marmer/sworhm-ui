@@ -1,4 +1,4 @@
-export default interface BookingEntryDto {
+export default interface BookingDto {
     id: string
     startTime?: string,
     duration?: string,

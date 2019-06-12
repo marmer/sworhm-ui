@@ -26,7 +26,7 @@ describe('Some Acceptance test', () => {
     it('should load with entries from the backend', function () {
         cy.server({force404: true});
 
-        cy.route("GET", "http://backend.de/api/booking-days/2002-02-01/entries", "fixture:day_2002-02-01_entries.json")
+        cy.route("GET", "http://backend.de/api/days/2002-02-01/bookings", "fixture:day_2002-02-01_entries.json")
             .as("entriesLoad");
 
         cy.visit('http://localhost:3000').debug({
@@ -59,13 +59,13 @@ describe('Some Acceptance test', () => {
     it('it should be possible to delete specific entries', function () {
         cy.server({force404: true});
 
-        cy.route("GET", "http://backend.de/api/booking-days/2002-02-01/entries", "fixture:day_2002-02-01_entries.json")
+        cy.route("GET", "http://backend.de/api/days/2002-02-01/bookings", "fixture:day_2002-02-01_entries.json")
             .as("entriesLoad");
         cy.route({
             status: 204,
             response: "",
             method: "DELETE",
-            url: "http://backend.de/api/booking-days/2002-02-01/entries/*"
+            url: "http://backend.de/api/days/2002-02-01/bookings/*"
         }).as("entryDelete");
 
         cy.visit('http://localhost:3000').debug({
@@ -93,13 +93,13 @@ describe('Some Acceptance test', () => {
     it('should always be an empty entry there if all entries have been deleted', () => {
         cy.server({force404: true});
 
-        cy.route("GET", "http://backend.de/api/booking-days/2002-02-01/entries", "fixture:day_2002-02-01_entries.json")
+        cy.route("GET", "http://backend.de/api/days/2002-02-01/bookings", "fixture:day_2002-02-01_entries.json")
             .as("entriesLoad");
         cy.route({
             status: 204,
             response: "",
             method: "DELETE",
-            url: "http://backend.de/api/booking-days/2002-02-01/entries/*"
+            url: "http://backend.de/api/days/2002-02-01/bookings/*"
         }).as("entryDelete");
 
         cy.visit('http://localhost:3000').debug({
@@ -134,14 +134,14 @@ describe('Some Acceptance test', () => {
 
         cy.route({
             method: "GET",
-            url: "http://backend.de/api/booking-days/2002-02-01/entries",
+            url: "http://backend.de/api/days/2002-02-01/bookings",
             response: "fixture:day_2002-02-01_entries.json",
             status: 200
         }).as("entriesLoad");
 
         cy.route({
             method: "PUT",
-            url: "http://backend.de/api/booking-days/2002-02-01/entries/65b8818f-0320-450b-9da0-49f3269bafd7",
+            url: "http://backend.de/api/days/2002-02-01/bookings/65b8818f-0320-450b-9da0-49f3269bafd7",
             status: 200
         }).as("entryUpdate");
 

@@ -6,11 +6,11 @@ import uuidv4 from "uuidv4";
 import BookingEntryDto from "../sworhm-data/model/BookingEntryDto";
 
 export default class RestBookingEntryRepository implements BookingEntryService {
-    private readonly baseUri = "http://backend.de/api/booking-days";
+    private readonly baseUri = "http://backend.de/api/days";
     private resource: string;
 
     constructor(day: string) {
-        this.resource = this.baseUri + "/" + day + "/entries";
+        this.resource = this.baseUri + "/" + day + "/bookings";
     }
 
     getAll(): Promise<BookingEntry[]> {

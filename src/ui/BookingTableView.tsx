@@ -30,15 +30,23 @@ export default class BookingTableView extends Component<BookingTableViewProps, B
     }
 
     render(): React.ReactElement {
-        return <div className="table-responsive-sm">
+        return <div className="table-responsive-sm ">
             <table className="table table-sm">
+                <colgroup>
+                    <col className="bookingStartTime"/>
+                    <col className="bookingDuration"/>
+                    <col className="bookingDescription"/>
+                    <col className="bookingTicket"/>
+                    <col className="bookingNotes"/>
+                    <col className="bookingActions"/>
+                </colgroup>
                 <thead>
                 <tr>
-                    <th scope="col" className="text-sm-center">Start time</th>
+                    <th scope="col" className="text-sm-center">Start</th>
                     <th scope="col" className="text-sm-center">Duration</th>
                     <th scope="col" className="text-sm-center">Description</th>
                     <th scope="col" className="text-sm-center">Ticket</th>
-                    <th scope="col" className="text-sm-center">Personal Notes</th>
+                    <th scope="col" className="text-sm-center">Notes</th>
                     <th scope="col" className="text-sm-center">Actions</th>
                 </tr>
                 </thead>

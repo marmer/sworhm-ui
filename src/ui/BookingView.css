@@ -1,6 +1,57 @@
-input {
-    display: block;
-    border-style: inset;
+col.bookingStartTime {
+    min-width: 5em;
+    width: 5em;
+}
+
+col.bookingDuration {
+    min-width: 5em;
+    width: 5em;
+}
+
+col.bookingDescription {
+    min-width: 30em;
+    width: 30em;
+}
+
+col.bookingTicket {
+    min-width: 15em;
+    width: 15em;
+}
+
+col.bookingNotes {
+    min-width: 30em;
+    width: 30em;
+}
+
+col.bookingActions {
+    min-width: 2em;
+    width: 2em;
+}
+
+textarea.bookingStartTime, input.bookingStartTime {
     width: 100%;
 }
 
+textarea.bookingDuration, input.bookingDuration {
+    width: 100%;
+}
+
+textarea.bookingDescription, input.bookingDescription {
+    width: 100%;
+}
+
+textarea.bookingTicket, input.bookingTicket {
+    width: 100%;
+}
+
+textarea.bookingNotes, input.bookingNotes {
+    width: 100%;
+}
+
+textarea.bookingStartTime, input.bookingStartTime {
+    width: 100%;
+}
+
+textarea.bookingActions, input.bookingActions {
+    width: 100%;
+}

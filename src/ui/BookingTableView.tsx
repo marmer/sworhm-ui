@@ -30,9 +30,22 @@ export default class BookingTableView extends Component<BookingTableViewProps, B
     }
 
     render(): React.ReactElement {
-        return <div>
-            <h1>Sworhm UI</h1>
-            {this.entries()}
+        return <div className="table-responsive-sm">
+            <table className="table table-sm">
+                <thead>
+                <tr>
+                    <th scope="col" className="text-sm-center">Start time</th>
+                    <th scope="col" className="text-sm-center">Duration</th>
+                    <th scope="col" className="text-sm-center">Description</th>
+                    <th scope="col" className="text-sm-center">Ticket</th>
+                    <th scope="col" className="text-sm-center">Personal Notes</th>
+                    <th scope="col" className="text-sm-center">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {this.entryRows()}
+                </tbody>
+            </table>
         </div>;
     }
 
@@ -48,11 +61,11 @@ export default class BookingTableView extends Component<BookingTableViewProps, B
                 }));
     }
 
-    private entries() {
-        return this.state.bookingEntries.map(this.toBookingEntryView);
+    private entryRows() {
+        return this.state.bookingEntries.map(this.toBookingEntryRowView);
     }
 
-    private toBookingEntryView = (entry: Booking) => {
+    private toBookingEntryRowView = (entry: Booking) => {
         return <BookingView key={entry.id}
                             onAdd={this.addNewRowAfter}
                             onRemove={this.removeEntry}

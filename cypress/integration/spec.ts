@@ -10,7 +10,7 @@ describe('Some Acceptance test', () => {
 
     it('should be possible to add more entries', function () {
         cy.visit('http://localhost:3000');
-        cy.get('.BookingView')
+        cy.get('.bookingView')
             .its('length')
             .should('eq', 1);
 
@@ -18,7 +18,7 @@ describe('Some Acceptance test', () => {
             .getAllByTitle('add').last()
             .click();
 
-        cy.get('.BookingView')
+        cy.get('.bookingView')
             .its('length')
             .should('eq', 2);
     });

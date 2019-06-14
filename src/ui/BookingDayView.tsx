@@ -13,6 +13,7 @@ export interface BookingDayViewProps {
 export default class BookingDayView extends Component<BookingDayViewProps, BookingDayViewState> {
     render(): React.ReactElement {
         return <div>
+            <h1>Sworhm UI</h1>
             <BookingTableView coreServicesFactory={this.props.coreServicesFactory}
                               day={"2002-02-01"}/>
         </div>;

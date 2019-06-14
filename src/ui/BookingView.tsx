@@ -41,32 +41,31 @@ export default class BookingView extends React.Component<BookingViewProps, Booki
     }
 
     render(): React.ReactNode {
-        return <tr className="bookingView">
+        return <tr className="BookingView">
             <td>
-                <input type="text" name="start" className="col-1 start" placeholder="09:25"
+                <input type="text" className="bookingStartTime text-center" placeholder="09:25"
                        value={this.state.startTime} onChange={this.onStartTimeChange}/>
             </td>
             <td>
-                <input type="text" name="duration" className="col-1 duration"
+                <input type="text" className="bookingDuration  text-center"
                        placeholder='2:17' value={this.state.duration}
                        onChange={this.onDurationChange}/>
             </td>
             <td>
-                <textarea rows={1} name="description" className="col description"
+                <textarea rows={1} className="bookingDescription"
                           placeholder="what has been done" value={this.state.description}
                           onChange={this.onDescriptionChange}/>
             </td>
             <td>
-                <input type="text" name="ticket" className="col-2 ticket" placeholder="TICKET-123"
+                <input type="text" className="bookingTicket text-center" placeholder="TICKET-123"
                        value={this.state.ticket} onChange={this.onTicketChange}/>
             </td>
             <td>
-                <textarea rows={1} name="notes" className="col notes" placeholder="personal notes"
+                <textarea rows={1} className="bookingNotes" placeholder="personal notes"
                           value={this.state.notes} onChange={this.onNotesChange}/>
             </td>
             <td>
-
-                <span className="col-1 btn-group actions">
+                <span className="btn-group actions">
                     <button type="button" className="btn btn-primary" title="save"
                             onClick={this.onUpdate}>
                         <i className="fas fa-save"/>

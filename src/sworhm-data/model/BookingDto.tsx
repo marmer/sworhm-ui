@@ -1,7 +1,7 @@
 export default interface BookingDto {
     id: string
     startTime?: string,
-    duration?: string,
+    durationInMinutes?: string,
     description?: string,
     ticket?: string,
     notes?: string

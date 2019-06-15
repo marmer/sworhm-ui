@@ -36,7 +36,7 @@ describe('Some Acceptance test', () => {
         cy.getAllByPlaceholderText('09:25').eq(0)
             .should('have.value', '00:55');
         cy.getAllByPlaceholderText('2:17').eq(0)
-            .should('have.value', '01:13:00');
+            .should('have.value', '45');
         cy.getAllByPlaceholderText('what has been done').eq(0)
             .should('have.value', 'another one bites the dust');
         cy.getAllByPlaceholderText('TICKET-123').eq(0)
@@ -47,7 +47,7 @@ describe('Some Acceptance test', () => {
         cy.getAllByPlaceholderText('09:25').eq(1)
             .should('have.value', '01:55');
         cy.getAllByPlaceholderText('2:17').eq(1)
-            .should('have.value', '08:15:00');
+            .should('have.value', '117');
         cy.getAllByPlaceholderText('what has been done').eq(1)
             .should('have.value', 'stay alive');
         cy.getAllByPlaceholderText('TICKET-123').eq(1)

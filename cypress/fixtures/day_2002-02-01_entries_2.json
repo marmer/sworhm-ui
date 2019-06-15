@@ -1,7 +1,7 @@
 {
   "id": "1412c9ec-4abe-44d2-a8af-406c45a55b54",
   "startTime": "01:55",
-  "duration": "08:15:00",
+  "durationInMinutes": "08:15:00",
   "description": "stay alive",
   "ticket": "JIRA-999",
   "notes": "cheek to cheek"

@@ -43,7 +43,7 @@ export default class BookingTableView extends Component<BookingTableViewProps, B
                 <thead>
                 <tr>
                     <th scope="col" className="text-sm-center">Start</th>
-                    <th scope="col" className="text-sm-center">Duration</th>
+                    <th scope="col" className="text-sm-center">Duration in Minutes</th>
                     <th scope="col" className="text-sm-center">Description</th>
                     <th scope="col" className="text-sm-center">Ticket</th>
                     <th scope="col" className="text-sm-center">Notes</th>

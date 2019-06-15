@@ -4,7 +4,7 @@
     {
       "id": "65b8818f-0320-450b-9da0-49f3269bafd7",
       "startTime": "00:55",
-      "duration": "01:13:00",
+      "durationInMinutes": 45,
       "description": "another one bites the dust",
       "ticket": "JIRA-666",
       "notes": "knocking on heavens door"
@@ -12,7 +12,7 @@
     {
       "id": "1412c9ec-4abe-44d2-a8af-406c45a55b54",
       "startTime": "01:55",
-      "duration": "08:15:00",
+      "durationInMinutes": 117,
       "description": "stay alive",
       "ticket": "JIRA-999",
       "notes": "cheek to cheek"

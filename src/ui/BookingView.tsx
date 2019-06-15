@@ -4,7 +4,7 @@ import Booking from "../core/model/Booking";
 
 interface BookingViewState {
     startTime?: string;
-    duration?: string;
+    durationInMinutes?: string;
     description?: string;
     ticket?: string;
     notes?: string;
@@ -48,7 +48,7 @@ export default class BookingView extends React.Component<BookingViewProps, Booki
             </td>
             <td>
                 <input type="text" className="bookingDuration  text-center"
-                       placeholder='2:17' value={this.state.duration}
+                       placeholder='2:17' value={this.state.durationInMinutes}
                        onChange={this.onDurationChange}/>
             </td>
             <td>
@@ -91,7 +91,7 @@ export default class BookingView extends React.Component<BookingViewProps, Booki
     };
 
     private onDurationChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        this.setState({duration: e.target.value});
+        this.setState({durationInMinutes: e.target.value});
     };
 
     private onDescriptionChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {

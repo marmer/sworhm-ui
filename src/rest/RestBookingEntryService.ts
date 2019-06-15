@@ -6,7 +6,7 @@ import uuidv4 from "uuidv4";
 import BookingDto from "../sworhm-data/model/BookingDto";
 
 export default class RestBookingRepository implements BookingService {
-    private readonly baseUri = "http://backend.de/api/days";
+    private readonly baseUri = "http://backend.de/api/v1/days";
     private resource: string;
 
     constructor(day: string) {

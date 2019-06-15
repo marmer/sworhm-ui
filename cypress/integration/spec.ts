@@ -9,10 +9,17 @@ describe('Some Acceptance test', () => {
     });
 
     it('should be possible to add more entries', function () {
+        cy.server({force404: true});
+        cy.route("GET", "http://localhost:8080/api/v1/days/2002-02-01/bookings", "fixture:day_2002-02-01_entries.json")
+            .as("entriesLoad");
+
         cy.visit('http://localhost:3000');
+
+        cy.wait("@entriesLoad");
+
         cy.get('.BookingView')
             .its('length')
-            .should('eq', 1);
+            .should('eq', 2);
 
         cy
             .getAllByTitle('add').last()
@@ -20,7 +27,7 @@ describe('Some Acceptance test', () => {
 
         cy.get('.BookingView')
             .its('length')
-            .should('eq', 2);
+            .should('eq', 3);
     });
 
     it('should load with entries from the backend', function () {

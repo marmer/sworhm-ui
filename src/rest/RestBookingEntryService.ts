@@ -21,7 +21,7 @@ export default class RestBookingRepository implements BookingService {
                     .then(bookingsDto => resolve(this.convertToBookings(bookingsDto)))
                     .catch(reject);
             } catch (e) {
-                reject();
+                reject(e);
             }
         });
     }

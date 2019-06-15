@@ -18,8 +18,13 @@ export default class RestBookingRepository implements BookingService {
             try {
                 new RestEndpoint<BookingsDto>(this.resource)
                     .performGet()
-                    .then(bookingsDto => resolve(this.convertToBookings(bookingsDto)))
-                    .catch(reject);
+                    .then(bookingsDto => {
+                        resolve(this.convertToBookings(bookingsDto))
+                    })
+                    .catch(reason => {
+                            reject(reason);
+                        }
+                    )
             } catch (e) {
                 reject(e);
             }

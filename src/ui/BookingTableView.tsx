@@ -69,9 +69,7 @@ export default class BookingTableView extends Component<BookingTableViewProps, B
             .catch(reason => {
                 // TODO: marmer 16.06.2019 create some visible error state and retry it again
                 console.error("error on bookings load", reason);
-            }).finally(
-            () => console.log("finally loading should be over")
-        );
+            });
     }
 
     private entryRows() {

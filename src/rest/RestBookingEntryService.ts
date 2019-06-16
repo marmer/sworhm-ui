@@ -64,7 +64,7 @@ export default class RestBookingRepository implements BookingService {
 
     private convertToBookings(responseDto: BookingsDto): Booking[] {
         return responseDto
-            .entries
+            .bookings
             .map((source) => {
                 const {id, description, durationInMinutes, notes, startTime, ticket} = source;
                 return {...this.createBookingEntry(), id, description, durationInMinutes, notes, startTime, ticket};

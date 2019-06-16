@@ -1,6 +1,6 @@
 {
   "day": "2002-02-01",
-  "entries": [
+  "bookings": [
     {
       "id": "65b8818f-0320-450b-9da0-49f3269bafd7",
       "startTime": "00:55",

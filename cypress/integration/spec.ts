@@ -8,7 +8,7 @@ describe('Some Acceptance test', () => {
             .should('be.visible');
     });
 
-    it('should be possible to add more entries', function () {
+    it('should be possible to add more bookings', function () {
         cy.server({force404: true});
         cy.route("GET", "http://localhost:8080/api/v1/days/2002-02-01/bookings", "fixture:day_2002-02-01_entries.json")
             .as("entriesLoad");
@@ -30,7 +30,7 @@ describe('Some Acceptance test', () => {
             .should('eq', 3);
     });
 
-    it('should load with entries from the backend', function () {
+    it('should load with bookings from the backend', function () {
         cy.server({force404: true});
 
         cy.route("GET", "http://localhost:8080/api/v1/days/2002-02-01/bookings", "fixture:day_2002-02-01_entries.json")
@@ -63,7 +63,7 @@ describe('Some Acceptance test', () => {
             .should('have.value', 'cheek to cheek');
     });
 
-    it('it should be possible to delete specific entries', function () {
+    it('it should be possible to delete specific bookings', function () {
         cy.server({force404: true});
 
         cy.route("GET", "http://localhost:8080/api/v1/days/2002-02-01/bookings", "fixture:day_2002-02-01_entries.json")
@@ -97,7 +97,7 @@ describe('Some Acceptance test', () => {
             .should('have.value', 'JIRA-999');
     });
 
-    it('should always be an empty entry there if all entries have been deleted', () => {
+    it('should always be an empty entry there if all bookings have been deleted', () => {
         cy.server({force404: true});
 
         cy.route("GET", "http://localhost:8080/api/v1/days/2002-02-01/bookings", "fixture:day_2002-02-01_entries.json")

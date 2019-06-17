@@ -39,8 +39,13 @@ export default class RestEndpoint<T> {
                 }
             });
             xhr.open(method, this.url, true);
-            xhr.setRequestHeader('Accept', 'application/JSON');
-            xhr.send(body !== null || body !== undefined ? JSON.stringify(body) : null);
+            xhr.setRequestHeader('Accept', 'application/json');
+            if (body != null) {
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.send(JSON.stringify(body));
+            } else {
+                xhr.send();
+            }
         });
     }
 }

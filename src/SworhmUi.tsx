@@ -19,7 +19,8 @@ export default class SworhmUi extends Component<SworhmUiProps, SworhmUiState> {
     constructor(props: SworhmUiProps, context: any) {
         super(props, context);
         this.state = {
-            day: new Date()
+            // TODO: marmer 21.07.2019 better "now"
+            day: new Date(2002, 1, 1)
         }
     }
 

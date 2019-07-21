@@ -25,7 +25,9 @@ export default class BookingTableView extends Component<BookingTableViewProps, B
             bookingEntries: []
         };
 
+        // TODO: marmer 21.07.2019 because here is only one instance of this class, new bookings for another day are not loaded. Perform the loading in a different way
         this.loadBookings();
+
     }
 
     render(): React.ReactElement {

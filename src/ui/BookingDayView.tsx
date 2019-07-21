@@ -8,14 +8,14 @@ interface BookingDayViewState {
 
 export interface BookingDayViewProps {
     coreServicesFactory: CoreServiceFactory
+    day: string;
 }
 
 export default class BookingDayView extends Component<BookingDayViewProps, BookingDayViewState> {
     render(): React.ReactElement {
         return <div>
-            <h1>Sworhm UI</h1>
             <BookingTableView coreServicesFactory={this.props.coreServicesFactory}
-                              day={"2002-02-01"}/>
+                              day={this.props.day}/>
         </div>;
     }
 

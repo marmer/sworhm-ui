@@ -15,7 +15,7 @@ export interface BookingTableViewProps {
 
 export default class BookingTableView extends Component<BookingTableViewProps, BookingTableViewState> {
 
-    private readonly bookingEntryService: BookingService;
+    private bookingEntryService: BookingService;
 
     constructor(props: Readonly<BookingTableViewProps>) {
         super(props);
@@ -25,9 +25,17 @@ export default class BookingTableView extends Component<BookingTableViewProps, B
             bookingEntries: []
         };
 
-        // TODO: marmer 21.07.2019 because here is only one instance of this class, new bookings for another day are not loaded. Perform the loading in a different way
         this.loadBookings();
+    }
 
+
+    componentWillUpdate(nextProps: Readonly<BookingTableViewProps>, nextState: Readonly<BookingTableViewState>, nextContext: any): void {
+        if (nextProps.day !== this.props.day) {
+            // TODO: marmer 23.07.2019 Better load by day instead of recreating new instances
+            this.bookingEntryService = this.props.coreServicesFactory.getBookingService(nextProps.day);
+            this.setState({bookingEntries: []});
+            this.loadBookings();
+        }
     }
 
     render(): React.ReactElement {

@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import './SworhmUi.css';
 import BookingDayView from "./ui/BookingDayView";
-import RestCoreServiceFactory from "./RestCoreServiceFactory";
+import DefaultCoreServiceFactory from "./DefaultCoreServiceFactory";
 import moment from "moment";
+import CoreServiceFactory from "./core/service/CoreServiceFactory";
+import {TimeService} from "./core/service/TimeService";
 
 
 interface SworhmUiState {
@@ -14,13 +16,13 @@ export interface SworhmUiProps {
 }
 
 export default class SworhmUi extends Component<SworhmUiProps, SworhmUiState> {
-    private coreServiceFactory = new RestCoreServiceFactory();
+    private readonly coreServiceFactory: CoreServiceFactory = new DefaultCoreServiceFactory();
+    private readonly timeService: TimeService = this.coreServiceFactory.getTimeService();
 
     constructor(props: SworhmUiProps, context: any) {
         super(props, context);
         this.state = {
-            // TODO: marmer 21.07.2019 better "now"
-            day: new Date(2002, 1, 1)
+            day: this.timeService.getNow()
         }
     }
 

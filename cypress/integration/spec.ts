@@ -1,6 +1,8 @@
 import "@testing-library/cypress/add-commands"
+import moment from "moment";
 
 describe('Some Acceptance test', () => {
+    const todayDateAsIsoString = moment(new Date()).format('YYYY-MM-DD');
 
     it('should load', function () {
         cy.visit('http://localhost:3000');
@@ -10,7 +12,7 @@ describe('Some Acceptance test', () => {
 
     it('should be possible to add more bookings', function () {
         cy.server({force404: true});
-        cy.route("GET", "http://localhost:8080/api/v1/days/2002-02-01/bookings", "fixture:day_2002-02-01_entries.json")
+        cy.route("GET", "http://localhost:8080/api/v1/days/" + todayDateAsIsoString + "/bookings", "fixture:day_2002-02-01_entries.json")
             .as("entriesLoad");
 
         cy.visit('http://localhost:3000');
@@ -33,7 +35,7 @@ describe('Some Acceptance test', () => {
     it('should load with bookings from the backend', function () {
         cy.server({force404: true});
 
-        cy.route("GET", "http://localhost:8080/api/v1/days/2002-02-01/bookings", "fixture:day_2002-02-01_entries.json")
+        cy.route("GET", "http://localhost:8080/api/v1/days/" + todayDateAsIsoString + "/bookings", "fixture:day_2002-02-01_entries.json")
             .as("entriesLoad");
 
         cy.visit('http://localhost:3000').debug({
@@ -66,13 +68,13 @@ describe('Some Acceptance test', () => {
     it('it should be possible to delete specific bookings', function () {
         cy.server({force404: true});
 
-        cy.route("GET", "http://localhost:8080/api/v1/days/2002-02-01/bookings", "fixture:day_2002-02-01_entries.json")
+        cy.route("GET", "http://localhost:8080/api/v1/days/" + todayDateAsIsoString + "/bookings", "fixture:day_2002-02-01_entries.json")
             .as("entriesLoad");
         cy.route({
             status: 204,
             response: "",
             method: "DELETE",
-            url: "http://localhost:8080/api/v1/days/2002-02-01/bookings/*"
+            url: "http://localhost:8080/api/v1/days/" + todayDateAsIsoString + "/bookings/*"
         }).as("entryDelete");
 
         cy.visit('http://localhost:3000').debug({
@@ -100,13 +102,13 @@ describe('Some Acceptance test', () => {
     it('should always be an empty entry there if all bookings have been deleted', () => {
         cy.server({force404: true});
 
-        cy.route("GET", "http://localhost:8080/api/v1/days/2002-02-01/bookings", "fixture:day_2002-02-01_entries.json")
+        cy.route("GET", "http://localhost:8080/api/v1/days/" + todayDateAsIsoString + "/bookings", "fixture:day_2002-02-01_entries.json")
             .as("entriesLoad");
         cy.route({
             status: 204,
             response: "",
             method: "DELETE",
-            url: "http://localhost:8080/api/v1/days/2002-02-01/bookings/*"
+            url: "http://localhost:8080/api/v1/days/" + todayDateAsIsoString + "/bookings/*"
         }).as("entryDelete");
 
         cy.visit('http://localhost:3000').debug({
@@ -141,14 +143,14 @@ describe('Some Acceptance test', () => {
 
         cy.route({
             method: "GET",
-            url: "http://localhost:8080/api/v1/days/2002-02-01/bookings",
+            url: "http://localhost:8080/api/v1/days/" + todayDateAsIsoString + "/bookings",
             response: "fixture:day_2002-02-01_entries.json",
             status: 200
         }).as("entriesLoad");
 
         cy.route({
             method: "PUT",
-            url: "http://localhost:8080/api/v1/days/2002-02-01/bookings/65b8818f-0320-450b-9da0-49f3269bafd7",
+            url: "http://localhost:8080/api/v1/days/" + todayDateAsIsoString + "/bookings/65b8818f-0320-450b-9da0-49f3269bafd7",
             status: 200
         }).as("entryUpdate");
 

@@ -31,7 +31,6 @@ export default class BookingTableView extends Component<BookingTableViewProps, B
 
     componentWillUpdate(nextProps: Readonly<BookingTableViewProps>, nextState: Readonly<BookingTableViewState>, nextContext: any): void {
         if (nextProps.day !== this.props.day) {
-            // TODO: marmer 23.07.2019 Better load by day instead of recreating new instances
             this.bookingEntryService = this.props.coreServicesFactory.getBookingService(nextProps.day);
             this.setState({bookingEntries: []});
             this.loadBookings();
